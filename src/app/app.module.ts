@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { Firebase } from '@ionic-native/firebase';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
@@ -18,7 +20,7 @@ import { SignupPage } from '../pages/signup/signup';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,7 +31,9 @@ import { SignupPage } from '../pages/signup/signup';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    
+    Firebase
   ]
 })
 export class AppModule {}
