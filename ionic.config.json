@@ -1,0 +1,8 @@
+{
+  "name": "bdtough",
+  "app_id": "58dcf0ab",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
