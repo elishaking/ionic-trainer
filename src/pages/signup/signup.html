@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Sign Up</ion-title>
   </ion-navbar>
 
@@ -8,5 +8,106 @@
 
 
 <ion-content padding>
+    <div id="logo">
+      <img src="assets/imgs/logo-2.png" alt="logo"/>
+    </div>
 
+  <ion-slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <div [formGroup]="signUpForm1" class="form-container">
+        <!-- <ion-list> -->
+          <ion-item>
+            <ion-label floating>* First name</ion-label>
+            <ion-input formControlName="firstName" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!signUpForm1.controls.firstName.valid && (signUpForm1.controls.firstName.dirty || submitTry)">
+            <p class="error-msg">Please enter a first name (<strong>30 characters or fewer. Letters only</strong>)</p>
+          </ion-item>
+
+          <ion-item [ngClass]="{nginvalid: !signUpForm1.controls.firstName.valid}" >
+            <ion-label floating>* Last name</ion-label>
+            <ion-input formControlName="lastName" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!signUpForm1.controls.lastName.valid && (signUpForm1.controls.lastName.dirty || submitTry)">
+            <p class="error-msg">Please enter a last name (<strong>30 characters or fewer. Letters only)</strong></p>
+          </ion-item>
+        <!-- </ion-list> -->
+        </div>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="signUpForm2" class="form-container">
+        <ion-item>
+          <ion-label floating>* username</ion-label>
+          <ion-input formControlName="username" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!signUpForm2.controls.username.valid && (signUpForm2.controls.username.dirty || submitTry)">
+          <p class="error-msg">Please enter a username (<strong>150 characters or fewer. Letters and digits only)</strong></p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>* email</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!signUpForm2.controls.email.valid && (signUpForm2.controls.email.dirty || submitTry)">
+          <p class="error-msg">Please enter a valid email</p>
+        </ion-item>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="signUpForm3" class="form-container">
+        <ion-item>
+          <ion-label floating>* password</ion-label>
+          <ion-input formControlName="password" type="password" (input)="checkPasswordStrength()" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="passwordStrength">
+          <p [ngStyle]="{color: strengthColor}" ><strong>{{ passwordStrength }}</strong></p>
+        </ion-item>
+        <ion-item *ngIf="!signUpForm3.controls.password.valid && (signUpForm3.controls.password.dirty || submitTry)">
+          <p class="error-msg">Enter password (<strong>30 characters or more</strong>)</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>* confirm password</ion-label>
+          <ion-input formControlName="confirmPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!signUpForm3.controls.confirmPassword.valid && (signUpForm3.controls.confirmPassword.dirty || submitTry)">
+          <p class="error-msg">Password Mismatch</p>
+        </ion-item>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="signUpForm4" class="form-container">
+        <ion-item>
+          <ion-label floating>Phone Number</ion-label>
+          <ion-input formControlName="phoneNumber" type="tel"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!signUpForm4.controls.phoneNumber.valid && (signUpForm4.controls.phoneNumber.dirty || submitTry)">
+          <p class="error-msg">Please enter a valid phone number (<strong>digits only</strong>)</p>
+        </ion-item>
+
+        <ion-item style="margin-top: 20px;">
+          <ion-label>Gender</ion-label>
+          <ion-select formControlName="gender">
+            <ion-option value="F">Female</ion-option>
+            <ion-option value="M">Male</ion-option>
+          </ion-select>
+        </ion-item> 
+      </form>
+    </ion-slide>
+  </ion-slides>
+
+  <div id="center-btn">
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button round (click)="back()" >Back</button>
+      </ion-col>
+
+      <ion-col col-6>
+        <button ion-button round (click)="next()" >{{ submitText }}</button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

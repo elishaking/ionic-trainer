@@ -14,3 +14,44 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+#logo{
+    height: 30%;
+    text-align: center;
+    img{
+        position: relative;
+        top: 30%;
+        height: 70%;
+        // border-radius: 100px;
+    }
+}
+
+.form-container{
+    padding-right: 15px;
+}
+
+.error-msg{
+    color: red !important;
+    white-space: initial;
+    font-size: 75% !important;
+    margin-right: -8px !important;
+}
+
+#center-btn{
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.center-btn{
+    margin-top: 5vh;
+    text-align: center;
+}
+
+button{
+    text-transform: none !important;
+}
+
+ion-slides{
+    height: fit-content;
+    width: fit-content;
+}
