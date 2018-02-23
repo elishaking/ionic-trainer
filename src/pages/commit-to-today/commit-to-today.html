@@ -1,12 +1,60 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
     <ion-title>Commit To Today</ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="showDeleteBtn" ion-button icon-only (click)="delete()" >
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <h4>Todays Tasks</h4>
 
+  <div>
+    <button ion-button round *ngIf="!todaysTasks" (click)="addNewTask()">Add New Task</button>
+
+    <div *ngIf="todaysTasks">
+      <ion-card *ngFor="let task of todaysTasks; let i = index" [ngClass]="{ taskdone: done[i] }">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2 style="margin: auto;">
+              <ion-checkbox class="task-status" [(ngModel)]="done[i]" (ionChange)="donec()"></ion-checkbox>
+            </ion-col>
+
+            <ion-col col-10>
+              <ion-row>
+                <ion-col class="task-overflow" col-10>
+                  <h2>{{ task.title }} </h2>
+                </ion-col>
+
+                <ion-col col-2>
+                  <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="cc()"></ion-checkbox>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col class="task-overflow" col-12>
+                  <p>{{ task.description }} </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </div>
+
+  <ion-fab right bottom>
+    <button (click)="addNewTask()" ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

@@ -13,6 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
 import { CreateIdentityPage } from '../pages/create-identity/create-identity';
 import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talks';
+import { CommitToTodayPage } from '../pages/commit-to-today/commit-to-today';
+import { CreateTaskPage } from '../pages/create-task/create-task';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talk
     HomePage,
     SignupPage,
     CreateIdentityPage,
+    CommitToTodayPage,
+    CreateTaskPage,
     ProducePepTalksPage
   ],
   imports: [
@@ -34,6 +38,8 @@ import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talk
     HomePage,
     SignupPage,
     CreateIdentityPage,
+    CommitToTodayPage,
+    CreateTaskPage,
     ProducePepTalksPage
   ],
   providers: [
