@@ -55,3 +55,23 @@ ion-slides{
     height: fit-content;
     width: fit-content;
 }
+
+.menu-header {
+    background: color($colors, primary);
+    height: 20vh;
+    margin-bottom: 2vh;
+    #title {
+      position: absolute;
+      margin: 0;
+      position: sticky;
+      top: 1000px;
+      margin-bottom: 5px;
+      margin-left: 16px;
+      color: color($colors, light);
+      font-weight: 400;
+    }
+}
+
+.menu-item-icon {
+    margin-right: 2vw;
+}

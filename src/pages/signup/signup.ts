@@ -3,6 +3,8 @@ import { NavController, NavParams, Slides, LoadingController, ToastController } 
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { Firebase } from '@ionic-native/firebase';
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -21,7 +23,16 @@ export class SignupPage {
   submitTry = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private http: Http, private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+    private http: Http, private loadingCtrl: LoadingController, private toastCtrl: ToastController,
+    private firebase: Firebase) {
+    var config = {
+      apiKey: "apiKey",
+      authDomain: "bd-tough.firebaseapp.com",
+      databaseURL: "https://bd-tough.firebaseio.com/",
+      storageBucket: "bd-tough.appspot.com"
+    };
+    this.firebase.setConfigSettings(config);
+
     this.signUpForm1 = new FormBuilder().group({
       firstName: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(30)])],
       lastName: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(30)])],
