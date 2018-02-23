@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 import { Firebase } from '@ionic-native/firebase';
 
+import { DisableSideMenu } from '../../custom-decorators/disable-side-menu.decorator';
+
+@DisableSideMenu()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
