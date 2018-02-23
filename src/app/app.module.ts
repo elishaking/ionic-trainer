@@ -6,27 +6,35 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { Firebase } from '@ionic-native/firebase';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
+import { CreateIdentityPage } from '../pages/create-identity/create-identity';
+import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talks';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    SignupPage
+    SignupPage,
+    CreateIdentityPage,
+    ProducePepTalksPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    SignupPage
+    SignupPage,
+    CreateIdentityPage,
+    ProducePepTalksPage
   ],
   providers: [
     StatusBar,
