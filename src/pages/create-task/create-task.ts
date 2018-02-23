@@ -40,7 +40,7 @@ export class CreateTaskPage {
         title: task.title,
         description: task.description
       });
-      this.navParams.get('checked').push(false);
+      this.navParams.get('checked').unshift(false);
 
       this.storage.set(
         'task_' + date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear(),

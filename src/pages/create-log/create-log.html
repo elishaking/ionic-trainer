@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Create Log</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div [formGroup]="createLogForm" class="form-container">
+    <!-- <ion-list> -->
+    <ion-item>
+      <ion-label floating>* Title</ion-label>
+      <ion-input formControlName="title" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!createLogForm.controls.title.valid && (createLogForm.controls.title.dirty || submitTry)">
+      <p class="error-msg">Please enter a log tile (<strong>200 characters or fewer</strong>)</p>
+    </ion-item>
+
+    <!-- <ion-item></ion-item> -->
+
+    <ion-item>
+      <ion-label floating>* Log Details</ion-label>
+      <ion-textarea rows="4" formControlName="description" type="text"></ion-textarea>
+    </ion-item>
+    <!-- </ion-list> -->
+  </div>
+
+  <div id="center-btn">
+    <button ion-button round (click)="save()">Save</button>
+  </div>
+</ion-content>

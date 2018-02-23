@@ -15,6 +15,8 @@ import { CreateIdentityPage } from '../pages/create-identity/create-identity';
 import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talks';
 import { CommitToTodayPage } from '../pages/commit-to-today/commit-to-today';
 import { CreateTaskPage } from '../pages/create-task/create-task';
+import { LogProgressPage } from '../pages/log-progress/log-progress';
+import { CreateLogPage } from '../pages/create-log/create-log';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CreateTaskPage } from '../pages/create-task/create-task';
     CreateIdentityPage,
     CommitToTodayPage,
     CreateTaskPage,
-    ProducePepTalksPage
+    ProducePepTalksPage,
+    LogProgressPage,
+    CreateLogPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { CreateTaskPage } from '../pages/create-task/create-task';
     CreateIdentityPage,
     CommitToTodayPage,
     CreateTaskPage,
-    ProducePepTalksPage
+    ProducePepTalksPage,
+    LogProgressPage,
+    CreateLogPage
   ],
   providers: [
     StatusBar,

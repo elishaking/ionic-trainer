@@ -8,13 +8,14 @@ import { SignupPage } from '../pages/signup/signup';
 import { CreateIdentityPage } from '../pages/create-identity/create-identity';
 import { CommitToTodayPage } from '../pages/commit-to-today/commit-to-today';
 import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talks';
+import { LogProgressPage } from '../pages/log-progress/log-progress';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = ProducePepTalksPage;
+  rootPage:any = LogProgressPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 
@@ -27,10 +28,10 @@ export class MyApp {
     });
 
     this.pages = [
-      { title: 'Home', component: HomePage, icon: "calculator" },
-      { title: 'Create Identity', component: CreateIdentityPage, icon: "list-box" },
-      { title: 'Commit to Today', component: CommitToTodayPage, icon: "grid" },
-      { title: 'Produce PEP talks', component: ProducePepTalksPage, icon: "pulse" }
+      { title: 'Home', component: HomePage, icon: "home" },
+      { title: 'Create Identity', component: CreateIdentityPage, icon: "contact" },
+      { title: 'Commit to Today', component: CommitToTodayPage, icon: "list" },
+      { title: 'Produce PEP talks', component: ProducePepTalksPage, icon: "chatbubbles" }
     ];
 
     this.currentPage[0] = this.pages[0];
