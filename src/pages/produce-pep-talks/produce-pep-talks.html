@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Produce PEP Talks</ion-title>
   </ion-navbar>
 
@@ -8,5 +8,16 @@
 
 
 <ion-content padding>
+  <h4>PEP Talks</h4>
+
+  <div>
+    <button ion-button round *ngIf="!todaysTasks" (click)="recordPEPTalk()">Record PEP Talk</button>
+
+
+  </div>
+
+  <ion-fab right bottom>
+    <button (click)="recordPEPTalk()" ion-fab color="primary"><ion-icon name="recording"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

@@ -14,7 +14,7 @@ import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talk
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = CommitToTodayPage;
+  rootPage:any = ProducePepTalksPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 

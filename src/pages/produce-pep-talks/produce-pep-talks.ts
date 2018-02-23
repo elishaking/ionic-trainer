@@ -14,4 +14,8 @@ export class ProducePepTalksPage {
     // console.log('ionViewDidLoad ProducePepTalksPage');
   }
 
+  recordPEPTalk(){
+    
+  }
+
 }
