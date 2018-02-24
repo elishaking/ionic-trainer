@@ -25,17 +25,19 @@ export class CreateLogPage {
     // console.log('ionViewDidLoad CreateLogPage');
   }
 
-  save(){
+  save() {
     this.submitTry = true;
 
-    if(this.createLogForm.valid){
+    if (this.createLogForm.valid) {
       this.submitTry = false;
 
+      let date = this.getDayTime();
       let log = {
         title: this.createLogForm.value['title'],
-        description: this.createLogForm.value['description']
+        description: this.createLogForm.value['description'],
+        date: date[0] + " " + date[1]
       }
-      let logs = this.navParams.get('logs'); 
+      let logs = this.navParams.get('logs');
       logs.unshift(log);
       this.navParams.get('checked').unshift(false);
 
@@ -51,7 +53,22 @@ export class CreateLogPage {
     }
   }
 
-  close(){
+  getDayTime(): [string, string] {
+    let date = new Date();
+    return [date.toDateString(), this.get12HourFormat(date)];
+  }
+
+  get12HourFormat(date: Date) {
+    let h = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+    var am_pm = date.getHours() >= 12 ? "pm" : "am";
+    let hours = h < 10 ? "0" + h : String(h);
+    let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : String(date.getMinutes());
+    // let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : String(date.getSeconds());
+
+    return hours + ":" + minutes + " " + am_pm;
+  }
+
+  close() {
     this.navCtrl.pop();
   }
 

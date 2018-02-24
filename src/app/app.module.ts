@@ -17,6 +17,7 @@ import { CommitToTodayPage } from '../pages/commit-to-today/commit-to-today';
 import { CreateTaskPage } from '../pages/create-task/create-task';
 import { LogProgressPage } from '../pages/log-progress/log-progress';
 import { CreateLogPage } from '../pages/create-log/create-log';
+import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateLogPage } from '../pages/create-log/create-log';
     CreateTaskPage,
     ProducePepTalksPage,
     LogProgressPage,
-    CreateLogPage
+    CreateLogPage,
+    DevelopRoutinesPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { CreateLogPage } from '../pages/create-log/create-log';
     CreateTaskPage,
     ProducePepTalksPage,
     LogProgressPage,
-    CreateLogPage
+    CreateLogPage,
+    DevelopRoutinesPage
   ],
   providers: [
     StatusBar,
