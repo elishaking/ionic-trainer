@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-produce-pep-talks',
@@ -7,7 +7,8 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProducePepTalksPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -15,7 +16,13 @@ export class ProducePepTalksPage {
   }
 
   recordPEPTalk(){
-    
+    this.toastCtrl.create({
+      message: 'Coming soon',
+      duration: 3000,
+      dismissOnPageChange: true,
+      closeButtonText: 'OK',
+      showCloseButton: true
+    }).present();
   }
 
 }

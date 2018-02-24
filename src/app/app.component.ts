@@ -10,13 +10,14 @@ import { CommitToTodayPage } from '../pages/commit-to-today/commit-to-today';
 import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talks';
 import { LogProgressPage } from '../pages/log-progress/log-progress';
 import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = DevelopRoutinesPage;
+  rootPage:any = HomePage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 
