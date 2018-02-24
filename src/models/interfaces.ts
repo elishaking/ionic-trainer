@@ -13,3 +13,8 @@ export interface Activity{
     title: string;
     date: string;
 }
+
+export interface Routine{
+    title: string;
+    stepsList: string;
+}

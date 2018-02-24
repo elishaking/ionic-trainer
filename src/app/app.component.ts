@@ -16,7 +16,7 @@ import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LogProgressPage;
+  rootPage:any = DevelopRoutinesPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 

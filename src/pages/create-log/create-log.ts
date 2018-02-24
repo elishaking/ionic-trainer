@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Storage } from '@ionic/storage';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { Activity } from '../../models/interfaces';
+import { getDayTime } from '../../models/functions';
 
 @Component({
   selector: 'page-create-log',
@@ -32,7 +33,7 @@ export class CreateLogPage {
     if (this.createLogForm.valid) {
       this.submitTry = false;
 
-      let date = this.getDayTime();
+      let date = getDayTime();
       let log = {
         title: this.createLogForm.value['title'],
         description: this.createLogForm.value['description'],
@@ -50,7 +51,7 @@ export class CreateLogPage {
             date: date[0] + " " + date[1]
           });
           this.storage.set('activities', a);
-        })
+        });
         this.navCtrl.pop();
       }, () => {
         this.toastCtrl.create({
@@ -60,21 +61,6 @@ export class CreateLogPage {
         }).present();
       });
     }
-  }
-
-  getDayTime(): [string, string] {
-    let date = new Date();
-    return [date.toDateString(), this.get12HourFormat(date)];
-  }
-
-  get12HourFormat(date: Date) {
-    let h = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-    var am_pm = date.getHours() >= 12 ? "pm" : "am";
-    let hours = h < 10 ? "0" + h : String(h);
-    let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : String(date.getMinutes());
-    // let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : String(date.getSeconds());
-
-    return hours + ":" + minutes + " " + am_pm;
   }
 
   close() {

@@ -18,6 +18,7 @@ import { CreateTaskPage } from '../pages/create-task/create-task';
 import { LogProgressPage } from '../pages/log-progress/log-progress';
 import { CreateLogPage } from '../pages/create-log/create-log';
 import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
+import { CreateRoutinePage } from '../pages/create-routine/create-routine';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,17 @@ import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines'
     HomePage,
     SignupPage,
     CreateIdentityPage,
+
     CommitToTodayPage,
     CreateTaskPage,
+    
     ProducePepTalksPage,
+
     LogProgressPage,
     CreateLogPage,
-    DevelopRoutinesPage
+
+    DevelopRoutinesPage,
+    CreateRoutinePage
   ],
   imports: [
     BrowserModule,
@@ -44,12 +50,17 @@ import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines'
     HomePage,
     SignupPage,
     CreateIdentityPage,
+
     CommitToTodayPage,
     CreateTaskPage,
+
     ProducePepTalksPage,
+
     LogProgressPage,
     CreateLogPage,
-    DevelopRoutinesPage
+
+    DevelopRoutinesPage,
+    CreateRoutinePage
   ],
   providers: [
     StatusBar,
