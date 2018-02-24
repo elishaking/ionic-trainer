@@ -1,3 +1,13 @@
 page-home {
-
+    .activity{
+        border: 1px solid color($colors, secondary);
+        border-bottom: 5px solid color($colors, secondary);
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .date{
+        text-align: end;
+        color: color($colors, secondary);
+        font-size: smaller;
+    }
 }

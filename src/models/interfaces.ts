@@ -8,3 +8,8 @@ export interface Log{
     date: string; // advice to be automatic
     details: string;
 }
+
+export interface Activity{
+    title: string;
+    date: string;
+}

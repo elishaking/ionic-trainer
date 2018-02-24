@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { Activity } from '../../models/interfaces';
 
 @Component({
   selector: 'page-create-log',
@@ -42,6 +43,14 @@ export class CreateLogPage {
       this.navParams.get('checked').unshift(false);
 
       this.storage.set('logs', logs).then(() => {
+        this.storage.get('activities').then((activities: Activity[]) => {
+          let a = activities ? activities : [];
+          a.push({
+            title: 'Created New Log',
+            date: date[0] + " " + date[1]
+          });
+          this.storage.set('activities', a);
+        })
         this.navCtrl.pop();
       }, () => {
         this.toastCtrl.create({
