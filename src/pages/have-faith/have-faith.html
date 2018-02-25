@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Have Faith</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h4>Have Faith</h4>
+
+  <div [formGroup]="createFaithForm" class="form-container">
+    <!-- <ion-list> -->
+    <ion-item>
+      <ion-label floating>* What do you believe in?</ion-label>
+      <ion-textarea rows="4" formControlName="belief" type="text"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="!createFaithForm.controls.belief.valid && (createFaithForm.controls.belief.dirty || submitTry)">
+      <p class="error-msg">Please enter your belief (
+        <strong>2000 characters or fewer. Letters only</strong>)</p>
+    </ion-item>
+
+    <ion-item [ngClass]="{nginvalid: !createFaithForm.controls.successReason.valid}">
+      <ion-label floating>* Why will you be successful</ion-label>
+      <ion-textarea rows="4" formControlName="successReason" type="text"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="!createFaithForm.controls.successReason.valid && (createFaithForm.controls.successReason.dirty || submitTry)">
+      <p class="error-msg">Please enter your some reasons for your success (
+        <strong>2000 characters or fewer. Letters only)</strong>
+      </p>
+    </ion-item>
+    <!-- </ion-list> -->
+  </div>
+
+  <div id="center-btn">
+    <button ion-button round (click)="save()">Save</button>
+  </div>
+</ion-content>

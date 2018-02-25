@@ -12,6 +12,7 @@ import { LogProgressPage } from '../pages/log-progress/log-progress';
 import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
 import { DoInterviewPage } from '../pages/do-interview/do-interview';
 import { TrackCharacterPage } from '../pages/track-character/track-character';
+import { HaveFaithPage } from '../pages/have-faith/have-faith';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,7 +40,8 @@ export class MyApp {
       { title: 'Log Progress', component: LogProgressPage, icon: "analytics" },
       { title: 'Develop Routines', component: DevelopRoutinesPage, icon: "paper" },
       { title: 'Do Interview', component: DoInterviewPage, icon: "microphone" },
-      { title: 'Track Character', component: TrackCharacterPage, icon: "podium" }
+      { title: 'Track Character', component: TrackCharacterPage, icon: "podium" },
+      { title: 'Have Faith', component: HaveFaithPage, icon: "rose" }
     ];
 
     this.currentPage[0] = this.pages[0];

@@ -22,6 +22,7 @@ import { CreateRoutinePage } from '../pages/create-routine/create-routine';
 import { DoInterviewPage } from '../pages/do-interview/do-interview';
 import { TrackCharacterPage } from '../pages/track-character/track-character';
 import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up-tracker';
+import { HaveFaithPage } from '../pages/have-faith/have-faith';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up
     DoInterviewPage,
 
     TrackCharacterPage,
-    SetUpTrackerPage
+    SetUpTrackerPage,
+
+    HaveFaithPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,9 @@ import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up
     DoInterviewPage,
 
     TrackCharacterPage,
-    SetUpTrackerPage
+    SetUpTrackerPage,
+
+    HaveFaithPage
   ],
   providers: [
     StatusBar,

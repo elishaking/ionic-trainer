@@ -14,8 +14,8 @@ export class CreateIdentityPage {
   submitText = 'Next';
   submitTry = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,
-    private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    private storage: Storage, private toastCtrl: ToastController) {
     this.createIdentityForm = new FormBuilder().group({
       athleticDreams: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(2000)])],
       attitudeSlogan: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(2000)])],
