@@ -10,6 +10,7 @@ import { CommitToTodayPage } from '../pages/commit-to-today/commit-to-today';
 import { ProducePepTalksPage } from '../pages/produce-pep-talks/produce-pep-talks';
 import { LogProgressPage } from '../pages/log-progress/log-progress';
 import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
+import { DoInterviewPage } from '../pages/do-interview/do-interview';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,7 +36,8 @@ export class MyApp {
       { title: 'Commit to Today', component: CommitToTodayPage, icon: "list" },
       { title: 'Produce PEP talks', component: ProducePepTalksPage, icon: "chatbubbles" },
       { title: 'Log Progress', component: LogProgressPage, icon: "analytics" },
-      { title: 'Develop Routines', component: DevelopRoutinesPage, icon: "list-box" }
+      { title: 'Develop Routines', component: DevelopRoutinesPage, icon: "list-box" },
+      { title: 'Do Interview', component: DoInterviewPage, icon: "microphone" }
     ];
 
     this.currentPage[0] = this.pages[0];

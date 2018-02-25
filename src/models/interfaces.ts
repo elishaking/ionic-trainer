@@ -23,3 +23,9 @@ export interface Identity{
     athleticDreams: string;
     attitudeSlogan: string;
 }
+
+export interface Interview{
+    title: string;
+    date: string;
+    // data: string;
+}

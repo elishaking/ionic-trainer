@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Do Interview</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <h4>Recorded Interviews</h4>
+
+    <div>
+      <button ion-button round *ngIf="interviews.length == 0" (click)="recordInterview()">Record Interview</button>
+  
+  
+    </div>
+  
+    <ion-fab right bottom>
+      <button (click)="recordInterview()" ion-fab color="primary"><ion-icon name="recording"></ion-icon></button>
+    </ion-fab>
+</ion-content>

@@ -19,6 +19,7 @@ import { LogProgressPage } from '../pages/log-progress/log-progress';
 import { CreateLogPage } from '../pages/create-log/create-log';
 import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
 import { CreateRoutinePage } from '../pages/create-routine/create-routine';
+import { DoInterviewPage } from '../pages/do-interview/do-interview';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { CreateRoutinePage } from '../pages/create-routine/create-routine';
     CreateLogPage,
 
     DevelopRoutinesPage,
-    CreateRoutinePage
+    CreateRoutinePage,
+
+    DoInterviewPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,9 @@ import { CreateRoutinePage } from '../pages/create-routine/create-routine';
     CreateLogPage,
 
     DevelopRoutinesPage,
-    CreateRoutinePage
+    CreateRoutinePage,
+
+    DoInterviewPage
   ],
   providers: [
     StatusBar,
