@@ -18,3 +18,8 @@ export interface Routine{
     title: string;
     stepsList: string;
 }
+
+export interface Identity{
+    athleticDreams: string;
+    attitudeSlogan: string;
+}

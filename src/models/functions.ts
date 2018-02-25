@@ -1,6 +1,6 @@
 export function getDayTime(): [string, string] {
     let date = new Date();
-    return [date.toDateString(), this.get12HourFormat(date)];
+    return [date.toDateString(), get12HourFormat(date)];
 }
 
 function get12HourFormat(date: Date) {

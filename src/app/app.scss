@@ -28,6 +28,9 @@
 
 .form-container{
     padding-right: 15px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .error-msg{
@@ -47,9 +50,13 @@
     text-align: center;
 }
 
-button{
-    text-transform: none !important;
-}
+// .content-md{
+//     background-color: gray;
+// }
+
+// button{
+//     text-transform: none !important;
+// }
 
 ion-slides{
     height: fit-content;
