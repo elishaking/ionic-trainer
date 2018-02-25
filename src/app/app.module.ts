@@ -20,6 +20,8 @@ import { CreateLogPage } from '../pages/create-log/create-log';
 import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines';
 import { CreateRoutinePage } from '../pages/create-routine/create-routine';
 import { DoInterviewPage } from '../pages/do-interview/do-interview';
+import { TrackCharacterPage } from '../pages/track-character/track-character';
+import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up-tracker';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { DoInterviewPage } from '../pages/do-interview/do-interview';
     DevelopRoutinesPage,
     CreateRoutinePage,
 
-    DoInterviewPage
+    DoInterviewPage,
+
+    TrackCharacterPage,
+    SetUpTrackerPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,10 @@ import { DoInterviewPage } from '../pages/do-interview/do-interview';
     DevelopRoutinesPage,
     CreateRoutinePage,
 
-    DoInterviewPage
+    DoInterviewPage,
+
+    TrackCharacterPage,
+    SetUpTrackerPage
   ],
   providers: [
     StatusBar,
