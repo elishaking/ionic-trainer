@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Routine } from '../../models/interfaces';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-import { CreateRoutinePage } from '../create-routine/create-routine';
+import { CreateRoutinePage } from './create-routine/create-routine';
 
 @Component({
   selector: 'page-develop-routines',

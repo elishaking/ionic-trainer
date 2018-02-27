@@ -3,7 +3,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Log } from '../../models/interfaces';
-import { CreateLogPage } from '../create-log/create-log';
+import { CreateLogPage } from './create-log/create-log';
 
 @Component({
   selector: 'page-log-progress',

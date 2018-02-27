@@ -3,8 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import { Activity } from '../../models/interfaces';
-import { getDayTime } from '../../models/functions';
+import { Activity } from '../../../models/interfaces';
+import { getDayTime } from '../../../models/functions';
 
 @Component({
   selector: 'page-create-log',

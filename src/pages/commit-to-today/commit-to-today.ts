@@ -3,7 +3,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Task } from '../../models/interfaces';
-import { CreateTaskPage } from '../create-task/create-task';
+import { CreateTaskPage } from './create-task/create-task';
 
 @Component({
   selector: 'page-commit-to-today',
