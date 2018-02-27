@@ -36,3 +36,10 @@ export interface Talk{
     length: string;
     date: string;
 }
+
+export interface Interview{
+    title: string;
+    name: string;
+    length: string;
+    date: string;
+}

@@ -11,15 +11,40 @@
 
 
 <ion-content padding>
-    <h4>Recorded Interviews</h4>
+  <h4>Recorded Interviews</h4>
 
-    <div>
-      <button ion-button round *ngIf="interviews.length == 0" (click)="recordInterview()">Record Interview</button>
-  
-  
-    </div>
-  
-    <ion-fab right bottom>
-      <button (click)="recordInterview()" ion-fab color="primary"><ion-icon name="recording"></ion-icon></button>
-    </ion-fab>
+  <div>
+    <button ion-button round *ngIf="interviews.length == 0" (click)="recordInterview()">Record Interview</button>
+
+    <ion-card *ngFor="let interview of interviews; let i = index">
+      <ion-card-header>
+        {{ interview.title }}
+      </ion-card-header>
+
+      <hr>
+
+      <ion-card-content>
+        <div class="foot">
+          <button class="foot-6" ion-button icon-only clear (click)="togglePlay(i)">
+            <ion-icon *ngIf="!playing" name="play"></ion-icon>
+            <ion-icon *ngIf="playing" name="pause"></ion-icon>
+          </button>
+
+          <button class="foot-6" ion-button icon-only clear (click)="stopPlay(i)">
+            <ion-icon name="square"></ion-icon>
+          </button>
+        </div>
+
+        <hr>
+
+        <p class="text-end" style="font-size: 70%;">{{ interview.date }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-fab right bottom>
+    <button (click)="recordInterview()" ion-fab color="primary">
+      <ion-icon name="recording"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

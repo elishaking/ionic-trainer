@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
-
-import { Talk } from '../../../models/interfaces';
-import { Storage } from '@ionic/storage';
 import { getDayTime } from '../../../models/functions';
-import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { Interview } from '../../../models/interfaces';
+import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'page-record-talk',
-  templateUrl: 'record-talk.html',
+  selector: 'page-record-interview',
+  templateUrl: 'record-interview.html',
 })
-export class RecordTalkPage {
-  talks: Talk[] = [];
+export class RecordInterviewPage {
+  interviews: Interview[] = [];
 
   hours = 0;
   minutes = 0;
@@ -27,17 +24,17 @@ export class RecordTalkPage {
   recordPaused = false;
   recordTimer = 0;
   recordingFile: MediaObject;
-  nTalks = 0;
+  nInterviews = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private media: Media, private storage: Storage, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
-    this.storage.get('nTalks').then((nTalks) => {
-      this.nTalks = nTalks ? nTalks : 0;
+    this.storage.get('nInterviews').then((nInterviews) => {
+      this.nInterviews = nInterviews ? nInterviews : 0;
     });
-    this.talks = this.navParams.get('talks');
+    this.interviews = this.navParams.get('interviews');
   }
 
   presentMsg(msg: string){
@@ -46,7 +43,7 @@ export class RecordTalkPage {
       duration: 4000,
       showCloseButton: true,
       closeButtonText: 'OK',
-      dismissOnPageChange: true
+      // dismissOnPageChange: true
     }).present();
   }
 
@@ -62,7 +59,7 @@ export class RecordTalkPage {
         this.recordingFile.resumeRecord();
         this.recordPaused = false;
       } else{
-        this.recordingFile = this.media.create('talk_' + (++this.nTalks) + '.3gp');
+        this.recordingFile = this.media.create('interview_' + (++this.nInterviews) + '.3gp');
         this.recordingFile.onError.subscribe((e) => {
           this.presentMsg('Error occured while saving recording');
         });
@@ -102,16 +99,16 @@ export class RecordTalkPage {
     this.resetTimer();
     this.recordingFile.stopRecord();
     let date = getDayTime();
-    let talk: Talk = {
-      title: 'PEP Talk ' + (this.nTalks),
-      name: 'talk_' + (this.nTalks) + '.3gp',
+    let interview: Interview = {
+      title: 'Interview ' + (this.nInterviews),
+      name: 'interview_' + (this.nInterviews) + '.3gp',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],
     }
     this.recordingFile.release();
-    this.talks.unshift(talk);
-    this.storage.set('talks', this.talks);
-    this.storage.set('nTalks', this.nTalks);
+    this.interviews.unshift(interview);
+    this.storage.set('interviews', this.interviews);
+    this.storage.set('nInterviews', this.nInterviews);
     this.navCtrl.pop();
   }
 

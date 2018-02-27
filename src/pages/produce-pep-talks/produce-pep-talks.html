@@ -15,7 +15,7 @@
   <div>
     <button ion-button round *ngIf="talks.length == 0" (click)="recordPEPTalk()">Record PEP Talk</button>
 
-    <ion-card *ngFor="let talk of talks">
+    <ion-card *ngFor="let talk of talks; let i = index">
       <ion-card-header>
         {{ talk.title }}
       </ion-card-header>
@@ -24,12 +24,12 @@
 
       <ion-card-content>
         <div class="foot">
-          <button class="foot-6" ion-button icon-only clear (click)="togglePlay()" >
+          <button class="foot-6" ion-button icon-only clear (click)="togglePlay(i)" >
             <ion-icon *ngIf="!playing" name="play"></ion-icon>
             <ion-icon *ngIf="playing" name="pause"></ion-icon>
           </button>
 
-          <button class="foot-6" ion-button icon-only clear (click)="stopPlay()" >
+          <button class="foot-6" ion-button icon-only clear (click)="stopPlay(i)" >
             <ion-icon name="square"></ion-icon>
           </button>
         </div>

@@ -30,6 +30,7 @@ import { TrackCharacterPage } from '../pages/track-character/track-character';
 import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up-tracker';
 import { HaveFaithPage } from '../pages/have-faith/have-faith';
 import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
+import { RecordInterviewPage } from '../pages/do-interview/record-interview/record-interview';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-ta
     CreateRoutinePage,
 
     DoInterviewPage,
+    RecordInterviewPage,
 
     TrackCharacterPage,
     SetUpTrackerPage,
@@ -83,6 +85,7 @@ import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-ta
     CreateRoutinePage,
 
     DoInterviewPage,
+    RecordInterviewPage,
 
     TrackCharacterPage,
     SetUpTrackerPage,
