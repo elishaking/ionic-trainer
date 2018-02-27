@@ -59,6 +59,7 @@ export class ProducePepTalksPage {
     this.playing = false;
     this.stopped = true;
     this.playObj.stop();
+    this.playObj.release();
   }
 
 }
