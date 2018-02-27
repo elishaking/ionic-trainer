@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Record Talk</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="counter">
+    {{ hrs }} : {{ mins }} : {{ secs }}
+  </div>
+
+  <hr>
+
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button icon-only clear (click)="finishRecording()" >
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-col>
+
+    <ion-col col-6>
+      <button ion-button icon-only clear (click)="toggleRecord()">
+        <ion-icon *ngIf="recording" name="pause"></ion-icon>
+        <ion-icon *ngIf="!recording" name="recording"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-content>

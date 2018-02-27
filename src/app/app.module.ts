@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Firebase } from '@ionic-native/firebase';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { MediaCapture } from '@ionic-native/media-capture';
+import { Media } from '@ionic-native/media';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -29,6 +29,7 @@ import { DoInterviewPage } from '../pages/do-interview/do-interview';
 import { TrackCharacterPage } from '../pages/track-character/track-character';
 import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up-tracker';
 import { HaveFaithPage } from '../pages/have-faith/have-faith';
+import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HaveFaithPage } from '../pages/have-faith/have-faith';
     CreateTaskPage,
     
     ProducePepTalksPage,
+    RecordTalkPage,
 
     LogProgressPage,
     CreateLogPage,
@@ -72,6 +74,7 @@ import { HaveFaithPage } from '../pages/have-faith/have-faith';
     CreateTaskPage,
 
     ProducePepTalksPage,
+    RecordTalkPage,
 
     LogProgressPage,
     CreateLogPage,
@@ -92,7 +95,7 @@ import { HaveFaithPage } from '../pages/have-faith/have-faith';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
     Firebase,
-    MediaCapture
+    Media
   ]
 })
 

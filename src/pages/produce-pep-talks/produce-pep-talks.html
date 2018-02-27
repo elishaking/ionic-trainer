@@ -13,9 +13,30 @@
   <h4>PEP Talks</h4>
 
   <div>
-    <button ion-button round *ngIf="!todaysTasks" (click)="recordPEPTalk()">Record PEP Talk</button>
+    <button ion-button round *ngIf="talks.length == 0" (click)="recordPEPTalk()">Record PEP Talk</button>
 
+    <ion-card *ngFor="let talk of talks">
+      <ion-card-header>
+        {{ talk.title }}
+      </ion-card-header>
 
+      <hr>
+
+      <ion-card-content>
+        <div class="foot">
+          <button class="foot-6" ion-button icon-only clear (click)="togglePlay()" >
+            <ion-icon *ngIf="!playing" name="play"></ion-icon>
+            <ion-icon *ngIf="playing" name="pause"></ion-icon>
+          </button>
+
+          <button class="foot-6" ion-button icon-only clear (click)="stopPlay()" >
+            <ion-icon name="square"></ion-icon>
+          </button>
+        </div>
+
+        <p class="text-end">{{ talk.date }}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
 
   <ion-fab right bottom>

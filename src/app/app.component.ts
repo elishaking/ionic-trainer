@@ -13,6 +13,7 @@ import { DevelopRoutinesPage } from '../pages/develop-routines/develop-routines'
 import { DoInterviewPage } from '../pages/do-interview/do-interview';
 import { TrackCharacterPage } from '../pages/track-character/track-character';
 import { HaveFaithPage } from '../pages/have-faith/have-faith';
+import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +21,7 @@ import { HaveFaithPage } from '../pages/have-faith/have-faith';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = ProducePepTalksPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 

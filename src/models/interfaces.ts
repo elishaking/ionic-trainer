@@ -29,3 +29,10 @@ export interface Interview{
     date: string;
     // data: string;
 }
+
+export interface Talk{
+    title: string;
+    name: string;
+    length: string;
+    date: string;
+}
