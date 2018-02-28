@@ -1,11 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides, LoadingController, ToastController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Firebase } from '@ionic-native/firebase';
 
 import { DisableSideMenu } from '../../custom-decorators/disable-side-menu.decorator';
+import { HomePage } from '../home/home';
+import { SigninPage } from '../signin/signin';
 
 @DisableSideMenu()
 @Component({
@@ -13,16 +15,8 @@ import { DisableSideMenu } from '../../custom-decorators/disable-side-menu.decor
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  @ViewChild(Slides) signUpSlides: Slides
+  signUpForm: FormGroup;
 
-  signUpForm1: FormGroup;
-  signUpForm2: FormGroup;
-  signUpForm3: FormGroup;
-  signUpForm4: FormGroup;
-
-  forms: FormGroup[];
-
-  submitText = 'Next';
   submitTry = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -36,17 +30,13 @@ export class SignupPage {
     };
     this.firebase.setConfigSettings(config);
 
-    this.signUpForm1 = new FormBuilder().group({
-      firstName: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(30)])],
-      lastName: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(30)])],
-    });
-
-    this.signUpForm2 = new FormBuilder().group({
-      username: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9]*$/), Validators.maxLength(150)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9\.\_]*@[a-zA-Z0-9\.\_]*\.[a-zA-Z0-9\.\_]*$/), Validators.maxLength(150)])]
-    });
-
-    this.signUpForm3 = new FormBuilder().group({
+    this.signUpForm = new FormBuilder().group({
+      name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
+      sport: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
+      level: ['P'],
+      school: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9\.\_]*@[a-zA-Z0-9\.\_]*\.[a-zA-Z0-9\.\_]*$/), Validators.maxLength(150)])],
+      phoneNumber: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
       password: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       confirmPassword: ['', Validators.compose([Validators.required, (control)=>{
         let form = control.parent;
@@ -58,15 +48,10 @@ export class SignupPage {
           }
         }
         return null;
-      }])]
-    });
-
-    this.signUpForm4 = new FormBuilder().group({
-      phoneNumber: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(30)])],
+      }])],
+      // phoneNumber: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(30)])],
       gender: ['M']
     });
-
-    this.forms = [this.signUpForm1, this.signUpForm2, this.signUpForm3, this.signUpForm4];
   }
 
   ionViewDidLoad() {
@@ -74,13 +59,11 @@ export class SignupPage {
   }
 
   ionViewDidEnter(){
-    let pageWidth = document.getElementById('logo').clientWidth;
-    let forms = document.getElementsByClassName('form-container');
-    for(let i = 0; i < forms.length; i++){
-      (<HTMLElement>forms[i]).style.width = pageWidth + 'px';
-    }
-
-    this.signUpSlides.lockSwipeToNext(true);
+    // let pageWidth = document.getElementById('logo').clientWidth;
+    // let forms = document.getElementsByClassName('form-container');
+    // for(let i = 0; i < forms.length; i++){
+    //   (<HTMLElement>forms[i]).style.width = pageWidth + 'px';
+    // }
   }
 
   passwordStrength = '';
@@ -89,7 +72,7 @@ export class SignupPage {
   checkPasswordStrength(){
     let strong = /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/;
     let medium = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/;
-    let password = this.signUpForm3.value.password;
+    let password = this.signUpForm.value.password;
     if(strong.test(password)){
       this.passwordStrength = 'strong';
       this.strengthColor = 'green';
@@ -101,43 +84,25 @@ export class SignupPage {
       this.strengthColor = 'red';
     }
   }
-
-  slideChanged(){
-    let cSlide = this.signUpSlides.getActiveIndex();
-    this.submitText = cSlide == 3 || cSlide == 4 ? 'Sign Up' : 'Next';
-    this.submitTry = false;
-  }
-
-  next(){
+  
+  signUp(){
     this.submitTry = true;
-    let currentForm = this.forms[this.signUpSlides.getActiveIndex()];
+    if(this.signUpForm.valid){
+      let loading = this.loadingCtrl.create({
+        content: 'Creating account',
+        enableBackdropDismiss: true
+      });
+      loading.present();
 
-    if(currentForm.valid){
-      this.submitTry = false;
-      if(this.submitText == 'Sign Up'){
-        this.signUp();
-      } else{
-        this.signUpSlides.lockSwipeToNext(false);
-        this.signUpSlides.slideNext(500);
-        this.signUpSlides.lockSwipeToNext(true);
-      }
-    } else{
-      // console.log(currentForm.value);
+      setTimeout(()=>{
+        loading.dismiss();
+        this.navCtrl.push(HomePage);
+      }, 3000);
     }
   }
 
-  back(){
-    this.signUpSlides.slidePrev(500);
-  }
-
-  
-  signUp(){
-    // console.log(this.signUpForm1.value, this.signUpForm2.value, this.signUpForm3.value, this.signUpForm4.value);
-    let loading = this.loadingCtrl.create({
-      content: 'Creating witness account',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+  signIn(){
+    this.navCtrl.push(SigninPage);
   }
 
 }

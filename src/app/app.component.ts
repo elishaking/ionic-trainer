@@ -14,6 +14,7 @@ import { DoInterviewPage } from '../pages/do-interview/do-interview';
 import { TrackCharacterPage } from '../pages/track-character/track-character';
 import { HaveFaithPage } from '../pages/have-faith/have-faith';
 import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
+import { SigninPage } from '../pages/signin/signin';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,7 @@ import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-ta
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = SignupPage;
+  rootPage:any = SigninPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 

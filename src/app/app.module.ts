@@ -31,12 +31,14 @@ import { SetUpTrackerPage } from '../pages/track-character/set-up-tracker/set-up
 import { HaveFaithPage } from '../pages/have-faith/have-faith';
 import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
 import { RecordInterviewPage } from '../pages/do-interview/record-interview/record-interview';
+import { SigninPage } from '../pages/signin/signin';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SignupPage,
+    SigninPage,
     CreateIdentityPage,
 
     CommitToTodayPage,
@@ -70,6 +72,7 @@ import { RecordInterviewPage } from '../pages/do-interview/record-interview/reco
     MyApp,
     HomePage,
     SignupPage,
+    SigninPage,
     CreateIdentityPage,
 
     CommitToTodayPage,

@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Sign In</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div [formGroup]="signInForm" class="form-container">
+    <!-- <ion-list> -->
+    <ion-item>
+      <ion-label floating>* email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!signInForm.controls.email.valid && (signInForm.controls.email.dirty || submitTry)">
+      <p class="error-msg">Please enter a valid email</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>* password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!signInForm.controls.password.valid && (signInForm.controls.password.dirty || submitTry)">
+      <p class="error-msg">Please enter your password</p>
+    </ion-item>
+  </div>
+
+  <div id="center-btn">
+    <button ion-button round (click)="signIn()">Sign In</button>
+  </div>
+
+  <div id="center-btn">
+    <button class="clear-btn" ion-button clear (click)="signUp()">Don't have account? Sign Up</button>
+  </div>
+</ion-content>
