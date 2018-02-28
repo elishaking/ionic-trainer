@@ -21,7 +21,7 @@ import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-ta
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = ProducePepTalksPage;
+  rootPage:any = SignupPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 

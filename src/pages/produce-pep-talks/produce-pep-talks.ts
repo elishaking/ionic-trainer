@@ -30,7 +30,8 @@ export class ProducePepTalksPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad ProducePepTalksPage');
     this.storage.get('talks').then((talks: Talk[]) => {
-      this.talks = talks;
+      if(talks)
+        this.talks = talks;
     });
   }
 

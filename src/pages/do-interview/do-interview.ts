@@ -39,7 +39,7 @@ export class DoInterviewPage {
       this.playing = false;
     } else{
       if(this.stopped){
-        this.playObj = this.media.create('interview_4.3gp');
+        this.playObj = this.media.create('interview_2.3gp');
         this.stopped = false;
       }
 

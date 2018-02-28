@@ -46,7 +46,7 @@ export class RecordTalkPage {
       duration: 4000,
       showCloseButton: true,
       closeButtonText: 'OK',
-      dismissOnPageChange: true
+      // dismissOnPageChange: true
     }).present();
   }
 
