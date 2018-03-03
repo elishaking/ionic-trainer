@@ -35,6 +35,7 @@ export interface Talk{
     name: string;
     length: string;
     date: string;
+    isVideo?: boolean;
 }
 
 export interface Interview{

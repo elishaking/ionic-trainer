@@ -13,7 +13,7 @@
   <h4>PEP Talks</h4>
 
   <div>
-    <button ion-button round *ngIf="talks.length == 0" (click)="recordPEPTalk()">Record PEP Talk</button>
+    <!-- <button ion-button round *ngIf="talks.length == 0" (click)="recordPEPTalk()">Record PEP Talk</button> -->
 
     <ion-card *ngFor="let talk of talks; let i = index">
       <ion-card-header>
@@ -23,7 +23,7 @@
       <hr>
 
       <ion-card-content>
-        <div class="foot">
+        <div *ngIf="!talk.isVideo" class="foot">
           <button class="foot-6" ion-button icon-only clear (click)="togglePlay(i)" >
             <ion-icon *ngIf="!playing" name="play"></ion-icon>
             <ion-icon *ngIf="playing" name="pause"></ion-icon>
@@ -34,6 +34,13 @@
           </button>
         </div>
 
+        <div *ngIf="talk.isVideo" class="foot">
+          <video class="video-talk" controls>
+            <source src="{{ talk.name }}">
+            Cannot Play Video
+          </video>
+        </div>
+
         <hr>
 
         <p class="text-end" style="font-size: 70%;">{{ talk.date }}</p>
@@ -41,8 +48,16 @@
     </ion-card>
   </div>
 
-  <ion-fab right bottom>
+  <!-- <ion-fab right bottom>
     <button (click)="recordPEPTalk()" ion-fab color="primary"><ion-icon name="recording"></ion-icon></button>
+  </ion-fab> -->
+
+  <ion-fab right bottom>
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="recordPEPTalk()"><ion-icon name="recording"></ion-icon></button>
+      <button ion-fab (click)="videoPEPTalk()"><ion-icon name="videocam"></ion-icon></button>
+    </ion-fab-list>
   </ion-fab>
 
 </ion-content>
