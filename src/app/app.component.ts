@@ -22,7 +22,7 @@ import { SigninPage } from '../pages/signin/signin';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = SigninPage;
+  rootPage:any = DoInterviewPage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 

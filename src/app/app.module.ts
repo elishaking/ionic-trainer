@@ -9,6 +9,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { Media } from '@ionic-native/media';
+import { MediaCapture } from '@ionic-native/media-capture';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -101,7 +102,8 @@ import { SigninPage } from '../pages/signin/signin';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
     Firebase,
-    Media
+    Media,
+    MediaCapture
   ]
 })
 

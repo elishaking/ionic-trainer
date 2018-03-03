@@ -28,12 +28,12 @@ export class RecordInterviewPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private media: Media, private storage: Storage, private toastCtrl: ToastController) {
-  }
-
-  ionViewDidLoad() {
     this.storage.get('nInterviews').then((nInterviews) => {
       this.nInterviews = nInterviews ? nInterviews : 0;
     });
+  }
+
+  ionViewDidLoad() {
     this.interviews = this.navParams.get('interviews');
   }
 

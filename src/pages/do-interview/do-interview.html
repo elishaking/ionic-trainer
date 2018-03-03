@@ -24,7 +24,7 @@
       <hr>
 
       <ion-card-content>
-        <div class="foot">
+        <div *ngIf="!interview.isVideo" class="foot">
           <button class="foot-6" ion-button icon-only clear (click)="togglePlay(i)">
             <ion-icon *ngIf="!playing" name="play"></ion-icon>
             <ion-icon *ngIf="playing" name="pause"></ion-icon>
@@ -35,6 +35,13 @@
           </button>
         </div>
 
+        <div *ngIf="interview.isVideo" class="foot">
+          <video class="video-int" controls>
+            <source src="{{ interview.name }}">
+            Cannot Play Video
+          </video>
+        </div>
+
         <hr>
 
         <p class="text-end" style="font-size: 70%;">{{ interview.date }}</p>
@@ -42,9 +49,17 @@
     </ion-card>
   </div>
 
-  <ion-fab right bottom>
+  <!-- <ion-fab right bottom>
     <button (click)="recordInterview()" ion-fab color="primary">
       <ion-icon name="recording"></ion-icon>
     </button>
+  </ion-fab> -->
+
+  <ion-fab right bottom>
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="recordInterview()"><ion-icon name="recording"></ion-icon></button>
+      <button ion-fab (click)="videoInterview()"><ion-icon name="videocam"></ion-icon></button>
+    </ion-fab-list>
   </ion-fab>
 </ion-content>

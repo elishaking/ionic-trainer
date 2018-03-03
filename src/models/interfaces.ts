@@ -42,4 +42,5 @@ export interface Interview{
     name: string;
     length: string;
     date: string;
+    isVideo?: boolean;
 }
