@@ -8,5 +8,13 @@
 
 
 <ion-content padding>
-
+  <h2>How Often do you want to track?</h2>
+  <ion-item>
+    <ion-label>Set up Tracker</ion-label>
+    <ion-select [(ngModel)]="trakingDuration" (ionChange)="scheduleNotification()">
+      <ion-option value="daily">Daily</ion-option>
+      <ion-option value="weekly">Weekly</ion-option>
+      <ion-option value="monthly">Monthly</ion-option>
+    </ion-select>
+  </ion-item>
 </ion-content>
