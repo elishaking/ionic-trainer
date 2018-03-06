@@ -10,6 +10,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { Media } from '@ionic-native/media';
 import { MediaCapture } from '@ionic-native/media-capture';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -103,7 +104,8 @@ import { SigninPage } from '../pages/signin/signin';
     
     Firebase,
     Media,
-    MediaCapture
+    MediaCapture,
+    LocalNotifications,
   ]
 })
 
