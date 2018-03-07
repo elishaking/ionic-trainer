@@ -15,6 +15,29 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+ion-card{
+    border-radius: 5px;
+}
+
+ion-item{
+    background-color: inherit !important;
+}
+
+ion-select{
+    background: white;
+}
+
+#logo{
+    height: 30%;
+    text-align: center;
+    img{
+        position: relative;
+        top: 30%;
+        height: 70%;
+        // border-radius: 100px;
+    }
+}
+
 .title{
     color: white;
 }
@@ -33,26 +56,16 @@
     background-size: cover;
 }
 
-ion-card{
-    border-radius: 5px;
-}
-
-#logo{
-    height: 30%;
-    text-align: center;
-    img{
-        position: relative;
-        top: 30%;
-        height: 70%;
-        // border-radius: 100px;
-    }
-}
-
 .form-container{
-    padding-right: 15px;
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
+    // padding-right: 15px;
+    // background: white;
+    // padding: 10px;
+    // border-radius: 10px;
+}
+
+.text-input{
+    border-radius: 5px;
+    background-color: white;
 }
 
 .error-msg{
