@@ -34,7 +34,7 @@ export class SigninPage {
 
       setTimeout(()=>{
         loading.dismiss();
-        this.navCtrl.push(HomePage);
+        this.navCtrl.setRoot(HomePage);
       }, 3000);
     }
   }

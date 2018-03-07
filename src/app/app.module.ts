@@ -5,7 +5,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { Firebase } from '@ionic-native/firebase';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { Media } from '@ionic-native/media';
@@ -102,7 +101,6 @@ import { SigninPage } from '../pages/signin/signin';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
-    Firebase,
     Media,
     MediaCapture,
     LocalNotifications,
