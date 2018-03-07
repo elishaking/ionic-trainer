@@ -65,10 +65,10 @@ export class MyApp {
     } else {
       // console.log(page, this.currentPage[0]);
       if (page != this.currentPage[0]) {
-        let userRef = this.nav.getActive().instance.userRef
+        let userDetails = this.nav.getActive().instance.userDetails
         this.currentPage[0] = page;
         this.nav.setRoot(page.component, {
-          'userRef': userRef
+          'userDetails': userDetails
         });
       }
       // this.menu.close();

@@ -108,9 +108,11 @@ export class SignupPage {
             phoneNumber: this.signUpForm.value.phoneNumber
           });
           loading.dismiss();
-          this.navCtrl.setRoot(HomePage, {
-            'userRef': userRef
-          });
+
+          // this.navCtrl.setRoot(HomePage, {
+          //   'userDetails': userRef.toJSON()
+          // });
+          this.navCtrl.setRoot(HomePage);
         }  
       } catch (e) {
         loading.dismiss();

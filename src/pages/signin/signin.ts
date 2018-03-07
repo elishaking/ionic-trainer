@@ -4,7 +4,7 @@ import { HomePage } from '../home/home';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
 
-import { User } from '../../models/interfaces';
+import { User, UserDetails } from '../../models/interfaces';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
@@ -15,6 +15,8 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 export class SigninPage {
   signInForm: FormGroup;
   submitTry = false;
+
+  userDetails: UserDetails;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private loadingCtrl: LoadingController, private afAuth: AngularFireAuth,
@@ -45,14 +47,17 @@ export class SigninPage {
         const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
         if (result) {
           console.log('id', result.uid);
-          let userRef = this.afDb.database.ref('users')
-            .orderByChild('id').equalTo(result.uid).once('child_added', (data) => {
-              
+          this.afDb.database.ref('users')
+            .orderByChild('id').equalTo(result.uid)
+            .once('child_added', (data) => {
+              this.userDetails = data.val();
+              console.log(this.userDetails);
             });
           loading.dismiss();
           // this.navCtrl.setRoot(HomePage, {
-          //   'userRef': userRef
+          //   'userDetails': this.userDetails
           // });
+          this.navCtrl.setRoot(HomePage);
         }  
       }
       catch (e) {
