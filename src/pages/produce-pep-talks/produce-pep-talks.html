@@ -25,8 +25,8 @@
       <ion-card-content>
         <div *ngIf="!talk.isVideo" class="foot">
           <button class="foot-6" ion-button icon-only clear (click)="togglePlay(i)" >
-            <ion-icon *ngIf="!playing" name="play"></ion-icon>
-            <ion-icon *ngIf="playing" name="pause"></ion-icon>
+            <ion-icon *ngIf="!playing[i]" name="play"></ion-icon>
+            <ion-icon *ngIf="playing[i]" name="pause"></ion-icon>
           </button>
 
           <button class="foot-6" ion-button icon-only clear (click)="stopPlay(i)" >

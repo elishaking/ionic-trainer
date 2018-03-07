@@ -109,6 +109,9 @@ export class RecordTalkPage {
       date: date[0] + " " + date[1],
     }
     this.recordingFile.release();
+    this.navParams.get('playing').unshift(false);
+    this.navParams.get('stopped').unshift(true);
+    this.navParams.get('playObj').unshift(null);
     this.talks.unshift(talk);
     this.storage.set('talks', this.talks);
     this.storage.set('nTalks', this.nTalks);

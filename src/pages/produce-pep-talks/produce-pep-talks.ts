@@ -17,9 +17,10 @@ export class ProducePepTalksPage {
   talks: Talk[] = [];
   nTalks = 0;
 
-  playing = false;
-  stopped = true;
-  playObj: MediaObject;
+  playing = []; //false;
+  stopped = []; //true;
+  playObj: MediaObject[] = [];
+  playingPos = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl: ToastController, private media: Media, private storage: Storage,
@@ -35,8 +36,10 @@ export class ProducePepTalksPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad ProducePepTalksPage');
     this.storage.get('talks').then((talks: Talk[]) => {
-      if(talks)
+      if(talks){
         this.talks = talks;
+        this.updateArrays();
+      }
     });
   }
 
@@ -47,7 +50,27 @@ export class ProducePepTalksPage {
     }
   }
 
+  updateArrays(){
+    for(let i = 0; i < this.talks.length; i++){
+      this.playing.push(false);
+      this.stopped.push(true);
+      this.playObj.push(null);
+    }
+  }
+
+  stopAllPlaybacks(){
+    for(let i = 0; i < this.talks.length; i++){
+      if(this.playObj[i])
+        this.stopPlay(i);
+      else{
+        this.playing[i] = false;
+        this.stopped[i] = true;
+      }
+    }
+  }
+
   videoPEPTalk(){
+    this.stopAllPlaybacks();
     this.mediaCapture.captureVideo({ limit: 1 }).then((video: MediaFile[]) => {
       let date = getDayTime();
       let talk: Talk = {
@@ -58,36 +81,43 @@ export class ProducePepTalksPage {
         isVideo: true
       }
       this.talks.unshift(talk);
+      this.playing.unshift(false);
+      this.stopped.unshift(true);
+      this.playObj.unshift(null);
       this.storage.set('talks', this.talks);
     });
   }
 
   recordPEPTalk(){
+    this.stopAllPlaybacks();
     this.navCtrl.push(RecordTalkPage, {
-      'talks': this.talks
+      'talks': this.talks,
+      'playing': this.playing,
+      'stopped': this.stopped,
+      'playObj': this.playObj
     });
   }
 
-  togglePlay(){
-    if(this.playing){
-      this.playObj.pause();
-      this.playing = false;
+  togglePlay(pos: number){
+    if(this.playing[pos]){
+      this.playObj[pos].pause();
+      this.playing[pos] = false;
     } else{
-      if(this.stopped){
-        this.playObj = this.media.create('talk_4.3gp');
-        this.stopped = false;
+      if(this.stopped[pos]){
+        this.playObj[pos] = this.media.create('talk_' + pos + '.3gp');
+        this.stopped[pos] = false;
       }
 
-      this.playObj.play();
-      this.playing = true;
+      this.playObj[pos].play();
+      this.playing[pos] = true;
     }
   }
 
-  stopPlay(){
-    this.playing = false;
-    this.stopped = true;
-    this.playObj.stop();
-    this.playObj.release();
+  stopPlay(pos: number){
+    this.playing[pos] = false;
+    this.stopped[pos] = true;
+    this.playObj[pos].stop();
+    this.playObj[pos].release();
   }
 
 }
