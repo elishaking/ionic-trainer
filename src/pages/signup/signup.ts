@@ -109,6 +109,7 @@ export class SignupPage {
             school: this.signUpForm.value.school,
             phoneNumber: this.signUpForm.value.phoneNumber
           });
+          console.log(userRef.toJSON());
           loading.dismiss();
 
           // this.navCtrl.setRoot(HomePage, {
