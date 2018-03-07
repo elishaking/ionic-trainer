@@ -15,6 +15,28 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.title{
+    color: white;
+}
+
+.menu-inner{
+    .scroll-content{
+        background: white;
+    }
+}
+
+.scroll-content{
+    background-image: url('../assets/imgs/bg.jpeg');
+    background-color: rgba(0,0,0,.75);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+}
+
+ion-card{
+    border-radius: 5px;
+}
+
 #logo{
     height: 30%;
     text-align: center;

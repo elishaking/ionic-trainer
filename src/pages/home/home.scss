@@ -1,4 +1,11 @@
 page-home {
+    .scroll-content{
+        background-image: url('../assets/imgs/bg.jpeg');
+        background-color: rgba(0,0,0,.75);
+        background-blend-mode: multiply;
+        background-position: center;
+        background-size: cover;
+    }
     // .activity{
     //     border: 1px solid black;
     //     border-bottom: 2px solid color($colors, secondary);
