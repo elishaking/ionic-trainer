@@ -19,7 +19,7 @@
     <!-- <ion-list> -->
     <ion-item>
       <ion-label floating>* Athletic Dreams</ion-label>
-      <ion-textarea rows="4" formControlName="athleticDreams" type="text"></ion-textarea>
+      <ion-textarea class="wp" rows="4" formControlName="athleticDreams" type="text"></ion-textarea>
     </ion-item>
     <ion-item *ngIf="!createIdentityForm.controls.athleticDreams.valid && (createIdentityForm.controls.athleticDreams.dirty || submitTry)">
       <p class="error-msg">Please enter your athletic dreams (

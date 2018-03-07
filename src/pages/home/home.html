@@ -10,12 +10,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content color="dark" padding>
+<ion-content padding>
   <h2>Recent Activities</h2>
-  <ion-list>
-    <button class="activity" ion-item *ngFor="let activity of activities">
-      <h2>{{ activity.title }}</h2>
+  <ion-card *ngFor="let activity of activities">
+    <ion-card-header>
+      {{ activity.title }}
+    </ion-card-header>
+
+    <ion-card-content>
       <p class="date">{{ activity.date }}</p>
-    </button>
-  </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
