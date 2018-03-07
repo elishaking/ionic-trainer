@@ -45,3 +45,17 @@ export interface Interview{
     date: string;
     isVideo?: boolean;
 }
+
+export interface User{
+    email: string;
+    password: string;
+}
+
+export interface UserDetails{
+    id: string;
+    name: string;
+    sport: string;
+    level: string;
+    school: string;
+    phoneNumber: string;
+}

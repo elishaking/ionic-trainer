@@ -3,11 +3,12 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Firebase } from '@ionic-native/firebase';
-
 import { DisableSideMenu } from '../../custom-decorators/disable-side-menu.decorator';
 import { HomePage } from '../home/home';
 import { SigninPage } from '../signin/signin';
+import { User, UserDetails } from '../../models/interfaces';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @DisableSideMenu()
 @Component({
@@ -21,15 +22,7 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private http: Http, private loadingCtrl: LoadingController, private toastCtrl: ToastController,
-    private firebase: Firebase) {
-    var config = {
-      apiKey: "apiKey",
-      authDomain: "bd-tough.firebaseapp.com",
-      databaseURL: "https://bd-tough.firebaseio.com/",
-      storageBucket: "bd-tough.appspot.com"
-    };
-    this.firebase.setConfigSettings(config);
-
+    private afAuth: AngularFireAuth, private afDb: AngularFireDatabase) {
     this.signUpForm = new FormBuilder().group({
       name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
       sport: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
@@ -85,7 +78,7 @@ export class SignupPage {
     }
   }
   
-  signUp(){
+  async signUp(){
     this.submitTry = true;
     if(this.signUpForm.valid){
       let loading = this.loadingCtrl.create({
@@ -94,10 +87,44 @@ export class SignupPage {
       });
       loading.present();
 
-      setTimeout(()=>{
+      try{
+        let user: User = {
+          email: this.signUpForm.value.email,
+          password: this.signUpForm.value.password
+        }
+        const result = await this.afAuth.auth.createUserWithEmailAndPassword(
+          user.email,
+          user.password
+        );
+        if (result) {
+          let users: AngularFireList<UserDetails> = this.afDb.list('/users');
+          
+          let userRef = await users.push({
+            id: result.uid,
+            name: this.signUpForm.value.name,
+            level: this.signUpForm.value.level,
+            sport: this.signUpForm.value.sport,
+            school: this.signUpForm.value.school,
+            phoneNumber: this.signUpForm.value.phoneNumber
+          });
+          loading.dismiss();
+          this.navCtrl.setRoot(HomePage, {
+            'userRef': userRef
+          });
+        }  
+      } catch (e) {
         loading.dismiss();
-        this.navCtrl.push(HomePage);
-      }, 3000);
+        this.toastCtrl.create({
+          message: "Error occurred during sign up",
+          duration: 3000,
+        }).present();
+        console.error(e);
+      }
+
+      // setTimeout(()=>{
+      //   loading.dismiss();
+      //   this.navCtrl.push(HomePage);
+      // }, 3000);
     }
   }
 
@@ -106,3 +133,27 @@ export class SignupPage {
   }
 
 }
+
+// var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+// ref.authWithPassword({
+//   email    : "bobtony@firebase.com",
+//   password : "invalid-password"
+// }, function(error, authData) {
+//   if (error) {
+//     switch (error.code) {
+//       case "INVALID_EMAIL":
+//         console.log("The specified user account email is invalid.");
+//         break;
+//       case "INVALID_PASSWORD":
+//         console.log("The specified user account password is incorrect.");
+//         break;
+//       case "INVALID_USER":
+//         console.log("The specified user account does not exist.");
+//         break;
+//       default:
+//         console.log("Error logging user in:", error);
+//     }
+//   } else {
+//     console.log("Authenticated successfully with payload:", authData);
+//   }
+// });

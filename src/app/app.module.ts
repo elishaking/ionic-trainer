@@ -34,6 +34,22 @@ import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-ta
 import { RecordInterviewPage } from '../pages/do-interview/record-interview/record-interview';
 import { SigninPage } from '../pages/signin/signin';
 
+// import { FirebaseProvider } from '../providers/firebase/firebase';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
+// import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+ 
+const firebaseConfig = {
+  apiKey: "AIzaSyBfn3exrL4oCh_c7jX2nLoxPJri7QHZ9aw",
+  authDomain: "bd-tough.firebaseapp.com",
+  databaseURL: "https://bd-tough.firebaseio.com",
+  projectId: "bd-tough",
+  storageBucket: "bd-tough.appspot.com",
+  messagingSenderId: "296357447594"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -64,9 +80,13 @@ import { SigninPage } from '../pages/signin/signin';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    HttpModule
+    HttpModule,
+    // AngularFireDatabaseModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -104,6 +124,7 @@ import { SigninPage } from '../pages/signin/signin';
     Media,
     MediaCapture,
     LocalNotifications,
+    // FirebaseProvider,
   ]
 })
 

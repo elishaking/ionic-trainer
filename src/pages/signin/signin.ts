@@ -4,6 +4,10 @@ import { HomePage } from '../home/home';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
 
+import { User } from '../../models/interfaces';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
 @Component({
   selector: 'page-signin',
   templateUrl: 'signin.html',
@@ -13,7 +17,8 @@ export class SigninPage {
   submitTry = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController, private afAuth: AngularFireAuth,
+    private afDb: AngularFireDatabase) {
       this.signInForm = new FormBuilder().group({
         email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9\.\_]*@[a-zA-Z0-9\.\_]*\.[a-zA-Z0-9\.\_]*$/), Validators.maxLength(150)])],
         password: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -23,7 +28,7 @@ export class SigninPage {
   ionViewDidLoad() {
   }
 
-  signIn(){
+  async signIn(){
     this.submitTry = true;
     if(this.signInForm.valid){
       let loading = this.loadingCtrl.create({
@@ -32,10 +37,32 @@ export class SigninPage {
       });
       loading.present();
 
-      setTimeout(()=>{
+      try{
+        let user: User = {
+          email: this.signInForm.value.email,
+          password: this.signInForm.value.password
+        }
+        const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+        if (result) {
+          console.log('id', result.uid);
+          let userRef = this.afDb.database.ref('users')
+            .orderByChild('id').equalTo(result.uid).once('child_added', (data) => {
+              
+            });
+          loading.dismiss();
+          // this.navCtrl.setRoot(HomePage, {
+          //   'userRef': userRef
+          // });
+        }  
+      }
+      catch (e) {
         loading.dismiss();
-        this.navCtrl.setRoot(HomePage);
-      }, 3000);
+        console.error(e);
+      }
+      // setTimeout(()=>{
+      //   loading.dismiss();
+      //   this.navCtrl.setRoot(HomePage);
+      // }, 3000);
     }
   }
 

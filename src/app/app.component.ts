@@ -65,8 +65,11 @@ export class MyApp {
     } else {
       // console.log(page, this.currentPage[0]);
       if (page != this.currentPage[0]) {
+        let userRef = this.nav.getActive().instance.userRef
         this.currentPage[0] = page;
-        this.nav.setRoot(page.component);
+        this.nav.setRoot(page.component, {
+          'userRef': userRef
+        });
       }
       // this.menu.close();
     }
@@ -82,7 +85,7 @@ export class MyApp {
     setTimeout(()=>{
       loader.dismiss();
       this.nav.setRoot(SigninPage);
-    }, 3000);
+    }, 500);
   }
 }
 
