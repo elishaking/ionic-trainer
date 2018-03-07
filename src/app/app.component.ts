@@ -15,6 +15,7 @@ import { TrackCharacterPage } from '../pages/track-character/track-character';
 import { HaveFaithPage } from '../pages/have-faith/have-faith';
 import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
 import { SigninPage } from '../pages/signin/signin';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,15 +23,20 @@ import { SigninPage } from '../pages/signin/signin';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController, private storage: Storage) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.storage.get('loggedIn').then((loggedIn) => {
+        if(!loggedIn){
+          this.rootPage = SigninPage;
+        }
+      });
       statusBar.styleDefault();
       splashScreen.hide();
     });
@@ -76,6 +82,7 @@ export class MyApp {
   }
 
   signOut(){
+    this.storage.set('loggedIn', false);
     let loader = this.loadingCtrl.create({
       content: "Signing Out...",
 

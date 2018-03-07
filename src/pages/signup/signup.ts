@@ -9,6 +9,7 @@ import { SigninPage } from '../signin/signin';
 import { User, UserDetails } from '../../models/interfaces';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Storage } from '@ionic/storage';
 
 @DisableSideMenu()
 @Component({
@@ -22,7 +23,8 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private http: Http, private loadingCtrl: LoadingController, private toastCtrl: ToastController,
-    private afAuth: AngularFireAuth, private afDb: AngularFireDatabase) {
+    private afAuth: AngularFireAuth, private afDb: AngularFireDatabase,
+    private storage: Storage) {
     this.signUpForm = new FormBuilder().group({
       name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
       sport: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(50)])],
@@ -112,6 +114,7 @@ export class SignupPage {
           // this.navCtrl.setRoot(HomePage, {
           //   'userDetails': userRef.toJSON()
           // });
+          this.storage.set('loggedIn', true);
           this.navCtrl.setRoot(HomePage);
         }  
       } catch (e) {

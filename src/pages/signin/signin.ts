@@ -7,6 +7,7 @@ import { SignupPage } from '../signup/signup';
 import { User, UserDetails } from '../../models/interfaces';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-signin',
@@ -20,7 +21,7 @@ export class SigninPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private loadingCtrl: LoadingController, private afAuth: AngularFireAuth,
-    private afDb: AngularFireDatabase) {
+    private afDb: AngularFireDatabase, private storage: Storage) {
       this.signInForm = new FormBuilder().group({
         email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9\.\_]*@[a-zA-Z0-9\.\_]*\.[a-zA-Z0-9\.\_]*$/), Validators.maxLength(150)])],
         password: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -57,6 +58,7 @@ export class SigninPage {
           // this.navCtrl.setRoot(HomePage, {
           //   'userDetails': this.userDetails
           // });
+          this.storage.set('loggedIn', true);
           this.navCtrl.setRoot(HomePage);
         }  
       }
