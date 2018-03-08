@@ -43,27 +43,6 @@ export class ProducePepTalksPage {
     }
   }
 
-  /*
-  videoPEPTalk(){
-    this.stopAllPlaybacks();
-    this.mediaCapture.captureVideo({ limit: 1 }).then((video: MediaFile[]) => {
-      let date = getDayTime();
-      let talk: Talk = {
-        title: 'PEP Talk ' + (++this.nTalks),
-        name: video[0].fullPath,
-        date: date[0] + " " + date[1],
-        length: '',
-        isVideo: true
-      }
-      this.talks.unshift(talk);
-      this.playing.unshift(false);
-      this.stopped.unshift(true);
-      this.playObj.unshift(null);
-      this.storage.set('talks', this.talks);
-    });
-  }
-  */
-
   recordPEPTalk(){
     this.navCtrl.push(RecordTalkPage, {
       'talks': this.talks

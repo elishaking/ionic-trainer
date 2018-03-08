@@ -104,14 +104,12 @@ export class RecordTalkPage {
     let date = getDayTime();
     let talk: Talk = {
       title: 'PEP Talk ' + (this.nTalks),
-      name: 'talk_' + (this.nTalks) + '.3gp',
+      name: 'file:///storage/emulated/0/talk_' + (this.nTalks) + '.3gp',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],
     }
     this.recordingFile.release();
     
-    this.navParams.get('playing').unshift(false);
-    this.navParams.get('stopped').unshift(true);
     this.talks.unshift(talk);
     this.storage.set('talks', this.talks).then(() => {
       this.storage.get('activities').then((activities: Activity[]) => {
