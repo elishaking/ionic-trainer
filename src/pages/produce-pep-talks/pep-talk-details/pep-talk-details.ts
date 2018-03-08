@@ -3,16 +3,17 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'page-interview-details',
-  templateUrl: 'interview-details.html',
+  selector: 'page-pep-talk-details',
+  templateUrl: 'pep-talk-details.html',
 })
-export class InterviewDetailsPage {
-  createInterviewForm: FormGroup;
+export class PepTalkDetailsPage {
+
+  createPEPTalkForm: FormGroup;
 
   submitTry = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.createInterviewForm = new FormBuilder().group({
+    this.createPEPTalkForm = new FormBuilder().group({
       title: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]*$/), Validators.maxLength(2000)])],
       description: ['', Validators.compose([Validators.maxLength(2000)])],
     });
@@ -24,11 +25,11 @@ export class InterviewDetailsPage {
   continue(){
     this.submitTry = true;
 
-    if(this.createInterviewForm.valid){
+    if(this.createPEPTalkForm.valid){
       this.submitTry = false;
-      let interview = this.navParams.get('interview');
-      interview.title = this.createInterviewForm.value['title'];
-      interview.description = this.createInterviewForm.value['description'];
+      let talk = this.navParams.get('talk');
+      talk.title = this.createPEPTalkForm.value['title'];
+      talk.description = this.createPEPTalkForm.value['description'];
       this.navCtrl.pop();
     }
   }

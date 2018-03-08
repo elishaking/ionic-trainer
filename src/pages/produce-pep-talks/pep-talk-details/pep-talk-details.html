@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar color="primary" >
-    <ion-title>Interview Details</ion-title>
+  <ion-navbar>
+    <ion-title>PEP Talk Details</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="close()">
@@ -14,13 +14,13 @@
 
 
 <ion-content padding>
-  <div [formGroup]="createInterviewForm" class="form-container">
+  <div [formGroup]="createPEPTalkForm" class="form-container">
     <!-- <ion-list> -->
     <ion-item>
-      <ion-label floating>* Interview Title</ion-label>
+      <ion-label floating>* PEP Talk Title</ion-label>
       <ion-input class="wp" formControlName="title" type="text"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!createInterviewForm.controls.title.valid && (createInterviewForm.controls.title.dirty || submitTry)">
+    <ion-item *ngIf="!createPEPTalkForm.controls.title.valid && (createPEPTalkForm.controls.title.dirty || submitTry)">
       <p class="error-msg">Please enter a title (<strong>200 characters or fewer. Letters only</strong>)</p>
     </ion-item>
 

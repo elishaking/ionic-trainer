@@ -41,6 +41,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { InterviewDetailsPage } from '../pages/do-interview/interview-details/interview-details';
+import { PepTalkDetailsPage } from '../pages/produce-pep-talks/pep-talk-details/pep-talk-details';
  
 const firebaseConfig = {
   apiKey: "AIzaSyBfn3exrL4oCh_c7jX2nLoxPJri7QHZ9aw",
@@ -64,6 +65,7 @@ const firebaseConfig = {
     
     ProducePepTalksPage,
     RecordTalkPage,
+    PepTalkDetailsPage,
 
     LogProgressPage,
     CreateLogPage,
@@ -105,6 +107,7 @@ const firebaseConfig = {
 
     ProducePepTalksPage,
     RecordTalkPage,
+    PepTalkDetailsPage,
 
     LogProgressPage,
     CreateLogPage,

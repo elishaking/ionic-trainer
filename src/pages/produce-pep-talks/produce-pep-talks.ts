@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 
 import { RecordTalkPage } from './record-talk/record-talk';
 import { Talk } from '../../models/interfaces';
@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 
 import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture';
 import { getDayTime } from '../../models/functions';
+import { PepTalkDetailsPage } from './pep-talk-details/pep-talk-details';
 
 @Component({
   selector: 'page-produce-pep-talks',
@@ -18,7 +19,7 @@ export class ProducePepTalksPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl: ToastController, private storage: Storage,
-    private mediaCapture: MediaCapture) {
+    private mediaCapture: MediaCapture, private modalCtrl: ModalController) {
       // this.talks = [{
       //   title: 'PEP Talk 4',
       //   name: 'talk_4.3gp',
@@ -44,8 +45,21 @@ export class ProducePepTalksPage {
   }
 
   recordPEPTalk(){
-    this.navCtrl.push(RecordTalkPage, {
-      'talks': this.talks
+    let talkDetails = {
+      title: '',
+      description: ''
+    }
+    let modal = this.modalCtrl.create(PepTalkDetailsPage, {
+      'talk': talkDetails
+    });
+    modal.present();
+
+    modal.onDidDismiss(() => {
+      if(talkDetails.title != ''){
+        this.navCtrl.push(RecordTalkPage, {
+          'talks': this.talks
+        });
+      }
     });
   }
 
