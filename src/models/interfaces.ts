@@ -48,6 +48,7 @@ export interface Talk{
 export interface Interview{
     title: string;
     name: string;
+    description: string;
     length: string;
     date: string;
     isVideo?: boolean;

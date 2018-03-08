@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar color="primary" >
+    <ion-title>Interview Details</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div [formGroup]="createInterviewForm" class="form-container">
+    <!-- <ion-list> -->
+    <ion-item>
+      <ion-label floating>* Interview Title</ion-label>
+      <ion-input class="wp" formControlName="title" type="text"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="!createInterviewForm.controls.title.valid && (createInterviewForm.controls.title.dirty || submitTry)">
+      <p class="error-msg">Please enter a title (<strong>200 characters or fewer. Letters only</strong>)</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Short Description</ion-label>
+      <ion-textarea rows="4" formControlName="description" type="text"></ion-textarea>
+    </ion-item>
+    <!-- </ion-list> -->
+  </div>
+
+  <div id="center-btn">
+    <ion-row>
+      <ion-col col-6><button color="light" ion-button round (click)="cancel()" >Cancel</button></ion-col>
+      <ion-col col-6><button ion-button round (click)="continue()" >Continue</button></ion-col>
+    </ion-row>
+  </div>
+</ion-content>

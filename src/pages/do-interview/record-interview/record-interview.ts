@@ -100,6 +100,7 @@ export class RecordInterviewPage {
     let interview: Interview = {
       title: 'Interview ' + (this.nInterviews[0]),
       name: 'file:///storage/emulated/0/interview_' + (this.nInterviews[0]) + '.3gp',
+      description: '',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],
     }

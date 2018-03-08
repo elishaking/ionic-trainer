@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, PopoverController, ModalController } from 'ionic-angular';
 import { Interview, Activity } from '../../models/interfaces';
 import { Storage } from '@ionic/storage';
 import { Media, MediaObject } from '@ionic-native/media';
@@ -7,6 +7,7 @@ import { RecordInterviewPage } from './record-interview/record-interview';
 
 import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture';
 import { getDayTime } from '../../models/functions';
+import { InterviewDetailsPage } from './interview-details/interview-details';
 
 @Component({
   selector: 'page-do-interview',
@@ -20,7 +21,7 @@ export class DoInterviewPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl: ToastController, private media: Media, private storage: Storage,
-    private mediaCapture: MediaCapture) {
+    private mediaCapture: MediaCapture, private modalCtrl: ModalController) {
     this.storage.get('interviews').then((interviews: Interview[]) => {
       if(interviews)
         this.interviews = interviews;
@@ -41,27 +42,41 @@ export class DoInterviewPage {
   }
 
   videoInterview(){
-    this.mediaCapture.captureVideo({ limit: 1 }).then((video: MediaFile[]) => {
-      let date = getDayTime();
-      let interview: Interview = {
-        title: 'Interview ' + (++this.nInterviews[0]),
-        name: video[0].fullPath,
-        date: date[0] + " " + date[1],
-        length: '',
-        isVideo: true
-      }
-      this.interviews.unshift(interview);
-      this.storage.set('nInterviews', this.nInterviews[0]);
-      this.storage.set('interviews', this.interviews).then(() => {
-        this.storage.get('activities').then((activities: Activity[]) => {
-          let a = activities ? activities : [];
-          a.unshift({
-            title: 'Recorded new Interview - video',
-            date: date[0] + " " + date[1]
+    let interviewDetails = {
+      title: '',
+      description: ''
+    }
+    let modal = this.modalCtrl.create(InterviewDetailsPage, {
+      'interview': interviewDetails
+    });
+    modal.present();
+
+    modal.onDidDismiss(() => {
+      if(interviewDetails.title != ''){
+        this.mediaCapture.captureVideo({ limit: 1 }).then((video: MediaFile[]) => {
+          let date = getDayTime();
+          let interview: Interview = {
+            title: interviewDetails.title,
+            description: interviewDetails.description,
+            name: video[0].fullPath,
+            date: date[0] + " " + date[1],
+            length: '',
+            isVideo: true
+          }
+          this.interviews.unshift(interview);
+          this.storage.set('nInterviews', this.nInterviews[0]);
+          this.storage.set('interviews', this.interviews).then(() => {
+            this.storage.get('activities').then((activities: Activity[]) => {
+              let a = activities ? activities : [];
+              a.unshift({
+                title: 'Recorded new Interview - video',
+                date: date[0] + " " + date[1]
+              });
+              this.storage.set('activities', a);
+            });
           });
-          this.storage.set('activities', a);
         });
-      });
+      }
     });
   }
 
