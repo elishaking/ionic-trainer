@@ -18,13 +18,25 @@
 
 <ion-content padding>
   <h2 class="title">Recent Activities</h2>
-  <ion-card *ngFor="let activity of activities">
+  <ion-card *ngFor="let activity of activities; let i = index">
     <ion-card-header>
-      {{ activity.title }}
+      <ion-row>
+        <ion-col col-9>
+          {{ activity.title }}
+        </ion-col>
+
+        <ion-col col-3 style="text-align: end;">
+          <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleDeleteFab()"></ion-checkbox>
+        </ion-col>
+      </ion-row>
     </ion-card-header>
 
     <ion-card-content>
       <p class="date">{{ activity.date }}</p>
     </ion-card-content>
   </ion-card>
+
+  <ion-fab *ngIf="showDeleteBtn" right bottom>
+    <button (click)="delete()" ion-fab color="primary"><ion-icon name="trash"></ion-icon></button>
+  </ion-fab>
 </ion-content>
