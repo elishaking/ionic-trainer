@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 })
 export class TrackCharacterPage {
   grade = '';
+  count = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController, private storage: Storage, private toastCtrl: ToastController) {
@@ -25,11 +26,15 @@ export class TrackCharacterPage {
   }
 
   updateGrade(){
-    this.toastCtrl.create({
-      message: 'Grade has been updated',
-      duration: 3000,
-    }).present();
-    this.storage.set('grade', this.grade);
+    if(this.count > 0){
+      this.toastCtrl.create({
+        message: 'Grade has been updated',
+        duration: 3000,
+      }).present();
+      this.storage.set('grade', this.grade);
+    } else{
+      this.count++;
+    }
   }
 
   viewResponse(){
