@@ -19,7 +19,7 @@ export class ProducePepTalksPage {
 
   playing = []; //false;
   stopped = []; //true;
-  playObj: MediaObject[] = [];
+  playObj: MediaObject;
   playingPos = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -54,21 +54,16 @@ export class ProducePepTalksPage {
     for(let i = 0; i < this.talks.length; i++){
       this.playing.push(false);
       this.stopped.push(true);
-      this.playObj.push(null);
+      // this.playObj.push(null);
     }
   }
 
-  stopAllPlaybacks(){
-    for(let i = 0; i < this.talks.length; i++){
-      if(this.playObj[i])
-        this.stopPlay(i);
-      else{
-        this.playing[i] = false;
-        this.stopped[i] = true;
-      }
-    }
+  stopPlayBack(){
+    this.playObj.stop();
+    this.playObj.release();
   }
 
+  /*
   videoPEPTalk(){
     this.stopAllPlaybacks();
     this.mediaCapture.captureVideo({ limit: 1 }).then((video: MediaFile[]) => {
@@ -87,28 +82,28 @@ export class ProducePepTalksPage {
       this.storage.set('talks', this.talks);
     });
   }
+  */
 
   recordPEPTalk(){
-    this.stopAllPlaybacks();
+    this.stopPlayBack();
     this.navCtrl.push(RecordTalkPage, {
       'talks': this.talks,
       'playing': this.playing,
-      'stopped': this.stopped,
-      'playObj': this.playObj
+      'stopped': this.stopped
     });
   }
 
   togglePlay(pos: number){
     if(this.playing[pos]){
-      this.playObj[pos].pause();
+      this.playObj.pause();
       this.playing[pos] = false;
     } else{
       if(this.stopped[pos]){
-        this.playObj[pos] = this.media.create('talk_' + pos + '.3gp');
+        this.playObj = this.media.create('talk_' + pos + '.3gp');
         this.stopped[pos] = false;
       }
 
-      this.playObj[pos].play();
+      this.playObj.play();
       this.playing[pos] = true;
     }
   }
@@ -116,8 +111,8 @@ export class ProducePepTalksPage {
   stopPlay(pos: number){
     this.playing[pos] = false;
     this.stopped[pos] = true;
-    this.playObj[pos].stop();
-    this.playObj[pos].release();
+    this.playObj.stop();
+    this.playObj.release();
   }
 
 }
