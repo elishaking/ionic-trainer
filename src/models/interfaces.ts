@@ -59,3 +59,8 @@ export interface UserDetails{
     school: string;
     phoneNumber: string;
 }
+
+export interface Faith{
+    belief: string;
+    successReason: string;
+}
