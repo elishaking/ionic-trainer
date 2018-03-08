@@ -36,6 +36,12 @@ export class MyApp {
         this.rootPage = loggedIn ? HomePage : SigninPage;
       });
       statusBar.styleDefault();
+      setTimeout(() => {
+        if (platform.is('android')) {
+          statusBar.overlaysWebView(true);
+          statusBar.backgroundColorByHexString('#b71c1c');
+        }
+      }, 5);
       splashScreen.hide();
     });
 

@@ -14,7 +14,7 @@ import { getDayTime } from '../../models/functions';
 })
 export class DoInterviewPage {
   interviews: Interview[] = [];
-  nInterviews = 0;
+  nInterviews = [0];
 
   playObj: MediaObject;
 
@@ -29,7 +29,7 @@ export class DoInterviewPage {
 
   ionViewDidLoad() {
     this.storage.get('nInterviews').then((nInterviews) => {
-      this.nInterviews = nInterviews ? nInterviews : 0;
+      this.nInterviews[0] = nInterviews ? nInterviews : 0;
     });
   }
 
@@ -44,13 +44,14 @@ export class DoInterviewPage {
     this.mediaCapture.captureVideo({ limit: 1 }).then((video: MediaFile[]) => {
       let date = getDayTime();
       let interview: Interview = {
-        title: 'Interview ' + (++this.nInterviews),
+        title: 'Interview ' + (++this.nInterviews[0]),
         name: video[0].fullPath,
         date: date[0] + " " + date[1],
         length: '',
         isVideo: true
       }
       this.interviews.unshift(interview);
+      this.storage.set('nInterviews', this.nInterviews[0]);
       this.storage.set('interviews', this.interviews).then(() => {
         this.storage.get('activities').then((activities: Activity[]) => {
           let a = activities ? activities : [];
@@ -66,7 +67,8 @@ export class DoInterviewPage {
 
   recordInterview(){
     this.navCtrl.push(RecordInterviewPage, {
-      'interviews': this.interviews
+      'interviews': this.interviews,
+      'nInterviews': this.nInterviews
     });
   }
 

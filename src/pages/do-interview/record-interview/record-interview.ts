@@ -24,13 +24,11 @@ export class RecordInterviewPage {
   recordPaused = false;
   recordTimer = 0;
   recordingFile: MediaObject;
-  nInterviews = 0;
+  nInterviews: number[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private media: Media, private storage: Storage, private toastCtrl: ToastController) {
-    this.storage.get('nInterviews').then((nInterviews) => {
-      this.nInterviews = nInterviews ? nInterviews : 0;
-    });
+    this.nInterviews = this.navParams.get('nInterviews');
   }
 
   ionViewDidLoad() {
@@ -59,7 +57,7 @@ export class RecordInterviewPage {
         this.recordingFile.resumeRecord();
         this.recordPaused = false;
       } else{
-        this.recordingFile = this.media.create('interview_' + (++this.nInterviews) + '.3gp');
+        this.recordingFile = this.media.create('interview_' + (++this.nInterviews[0]) + '.3gp');
         this.recordingFile.onError.subscribe((e) => {
           this.presentMsg('Error occured while saving recording');
         });
@@ -100,8 +98,8 @@ export class RecordInterviewPage {
     this.recordingFile.stopRecord();
     let date = getDayTime();
     let interview: Interview = {
-      title: 'Interview ' + (this.nInterviews),
-      name: 'file:///storage/emulated/0/interview_' + (this.nInterviews) + '.3gp',
+      title: 'Interview ' + (this.nInterviews[0]),
+      name: 'file:///storage/emulated/0/interview_' + (this.nInterviews[0]) + '.3gp',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],
     }
@@ -117,7 +115,7 @@ export class RecordInterviewPage {
         this.storage.set('activities', a);
       });
     });
-    this.storage.set('nInterviews', this.nInterviews);
+    this.storage.set('nInterviews', this.nInterviews[0]);
     this.navCtrl.pop();
   }
 
