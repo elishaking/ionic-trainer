@@ -2,17 +2,23 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { Task } from '../../models/interfaces';
+import { Task, TaskGroup } from '../../models/interfaces';
 import { CreateTaskPage } from './create-task/create-task';
+import { getDay } from '../../models/functions';
 
 @Component({
   selector: 'page-commit-to-today',
   templateUrl: 'commit-to-today.html',
 })
 export class CommitToTodayPage {
-  todaysTasks: Task[] = [];
+  allTasks: TaskGroup[];
+  todaysTasks: TaskGroup = {
+    date: '',
+    updated_date: '',
+    tasks: []
+  };
   checked: Boolean[] = [];
-  done: Boolean[] = [];
+  // done: Boolean[] = [];
 
   showDeleteBtn = false;
 
@@ -24,8 +30,8 @@ export class CommitToTodayPage {
     // console.log('ionViewDidLoad CommitToTodayPage');
     let date = new Date();
 
-    this.storage.get('task_' + date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear()).then((tasks) => {
-      this.todaysTasks = tasks ? tasks : [];
+    this.storage.get('allTasks').then((allTasks) => {
+      this.allTasks = allTasks || [];
       // if(this.todaysTasks.length == 0){
       //   this.todaysTasks = [
       //     {
@@ -34,44 +40,62 @@ export class CommitToTodayPage {
       //     }
       //   ];
       // }
-    }).then(() => {
-      this.storage.get('done_' + date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear()).then((done) => {
-        this.done = done ? done : [];
-        if(this.done.length == 0){
-          for(let i = 0; i < this.todaysTasks.length; i++){
-            this.done.push(false);
-          }
-          this.storage.set('done_' + date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear(), done);
+      // change if state - use && operator
+      if(this.allTasks.length > 0){
+        if(this.allTasks[0].date == getDay()){
+          this.todaysTasks = this.allTasks[0];
+        } else{
+          this.allTasks.unshift({
+            date: getDay(),
+            updated_date: getDay(),
+            tasks: []
+          });
+          this.todaysTasks = this.allTasks[0];
         }
-      });
+      } else{
+        this.allTasks.unshift({
+          date: getDay(),
+          updated_date: getDay(),
+          tasks: []
+        });
+        this.todaysTasks = this.allTasks[0];
+      }
     });
 
     this.updateChecked();
   }
 
-  cc(){
+  toggleChecked(){
     this.showDeleteBtn = this.checked.indexOf(true) != -1;
   }
 
-  donec(){
-    
+  toggleTaskCompleted(){
+    this.storage.set('allTasks', this.allTasks);
   }
 
   updateChecked(){
-    for(let i = 0; i < this.todaysTasks.length; i++){
+    for(let i = 0; i < this.todaysTasks.tasks.length; i++){
       this.checked.push(false);
     }
   }
 
   addNewTask(){
     this.modalCtrl.create(CreateTaskPage, {
+      'allTasks': this.allTasks,
       'todaysTasks': this.todaysTasks,
       'checked': this.checked
     }).present();
   }
 
   delete(){
-
+    for(let i = 0; i < this.todaysTasks.tasks.length; i++){
+      if(this.checked[i] == true){
+        this.todaysTasks.tasks.splice(i, 1);
+        this.checked.splice(i, 1);
+        i--;
+      }
+    }
+    this.storage.set('allTasks', this.allTasks);
   }
 
 }

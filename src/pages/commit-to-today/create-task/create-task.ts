@@ -3,8 +3,8 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
-import { Task, Activity } from '../../../models/interfaces';
-import { getDayTime } from '../../../models/functions';
+import { Task, Activity, TaskGroup } from '../../../models/interfaces';
+import { getDayTime, getDay } from '../../../models/functions';
 
 @Component({
   selector: 'page-create-task',
@@ -37,17 +37,17 @@ export class CreateTaskPage {
       let date = new Date();
       let date2 = getDayTime();
       let task: Task = this.createTaskForm.value;
-      let todaysTasks: Task[] = this.navParams.get('todaysTasks');
-      todaysTasks.unshift({
+      let allTasks: TaskGroup[] = this.navParams.get('allTasks');
+      let todaysTasks: TaskGroup = this.navParams.get('todaysTasks');
+      // todaysTasks.updated_date = getDay();
+      todaysTasks.tasks.unshift({
         title: task.title,
-        description: task.description
+        description: task.description,
+        completed: false
       });
       this.navParams.get('checked').unshift(false);
 
-      this.storage.set(
-        'task_' + date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear(),
-        todaysTasks
-      ).then(() => {
+      this.storage.set('allTasks', allTasks).then(() => {
         this.storage.get('activities').then((activities: Activity[]) => {
           let a = activities ? activities : [];
           a.unshift({

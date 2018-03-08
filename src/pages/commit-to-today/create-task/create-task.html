@@ -21,8 +21,7 @@
       <ion-input formControlName="title" type="text"></ion-input>
     </ion-item>
     <ion-item *ngIf="!createTaskForm.controls.title.valid && (createTaskForm.controls.title.dirty || submitTry)">
-      <p class="error-msg">Please enter your athletic dreams (
-        <strong>2000 characters or fewer. Letters only</strong>)</p>
+      <p class="error-msg">Please enter a title (<strong>2000 characters or fewer. Letters only</strong>)</p>
     </ion-item>
 
     <ion-item>

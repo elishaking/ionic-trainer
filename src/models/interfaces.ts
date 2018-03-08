@@ -1,6 +1,13 @@
 export interface Task {
     title: string;
     description: string;
+    completed: boolean;
+}
+
+export interface TaskGroup{
+    date: string;
+    updated_date: string;
+    tasks: Task[];
 }
 
 export interface Log{

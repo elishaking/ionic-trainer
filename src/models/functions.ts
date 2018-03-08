@@ -12,3 +12,8 @@ function get12HourFormat(date: Date) {
 
     return hours + ":" + minutes + " " + am_pm;
 }
+
+export function getDay(){
+    let date = new Date();
+    return date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear();
+}

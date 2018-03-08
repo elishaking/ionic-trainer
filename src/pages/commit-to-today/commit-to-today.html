@@ -21,37 +21,37 @@
   <h4 class="title">Todays Tasks</h4>
 
   <div>
-    <button ion-button round *ngIf="!todaysTasks" (click)="addNewTask()">Add New Task</button>
+    <!-- <button ion-button round *ngIf="!todaysTasks.tasks" (click)="addNewTask()">Add New Task</button> -->
 
-    <div *ngIf="todaysTasks">
-      <ion-card *ngFor="let task of todaysTasks; let i = index" [ngClass]="{ taskdone: done[i] }">
-        <ion-grid>
-          <ion-row>
-            <ion-col col-2 style="margin: auto;">
-              <ion-checkbox class="task-status" [(ngModel)]="done[i]" (ionChange)="donec()"></ion-checkbox>
-            </ion-col>
+    <!-- <div *ngIf="todaysTasks"> -->
+    <ion-card *ngFor="let task of todaysTasks.tasks; let i = index" [ngClass]="{ taskdone: task.completed }">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2 style="margin: auto;">
+            <ion-checkbox class="task-status" [(ngModel)]="task.completed" (ionChange)="toggleTaskCompleted()"></ion-checkbox>
+          </ion-col>
 
-            <ion-col col-10>
-              <ion-row>
-                <ion-col class="task-overflow" col-10>
-                  <h2>{{ task.title }} </h2>
-                </ion-col>
+          <ion-col col-10>
+            <ion-row>
+              <ion-col class="task-overflow" col-10>
+                <h2>{{ task.title }} </h2>
+              </ion-col>
 
-                <ion-col col-2>
-                  <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="cc()"></ion-checkbox>
-                </ion-col>
-              </ion-row>
+              <ion-col col-2>
+                <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleChecked()"></ion-checkbox>
+              </ion-col>
+            </ion-row>
 
-              <ion-row>
-                <ion-col class="task-overflow" col-12>
-                  <p>{{ task.description }} </p>
-                </ion-col>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-    </div>
+            <ion-row>
+              <ion-col class="task-overflow" col-12>
+                <p>{{ task.description }} </p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <!-- </div> -->
   </div>
 
   <ion-fab right bottom>
