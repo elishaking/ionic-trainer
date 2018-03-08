@@ -10,6 +10,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Media } from '@ionic-native/media';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -42,6 +43,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { InterviewDetailsPage } from '../pages/do-interview/interview-details/interview-details';
 import { PepTalkDetailsPage } from '../pages/produce-pep-talks/pep-talk-details/pep-talk-details';
+import { ContactUsPage } from '../pages/contact-us/contact-us';
  
 const firebaseConfig = {
   apiKey: "AIzaSyBfn3exrL4oCh_c7jX2nLoxPJri7QHZ9aw",
@@ -80,7 +82,9 @@ const firebaseConfig = {
     TrackCharacterPage,
     SetUpTrackerPage,
 
-    HaveFaithPage
+    HaveFaithPage,
+
+    ContactUsPage
   ],
   imports: [
     BrowserModule,
@@ -122,7 +126,9 @@ const firebaseConfig = {
     TrackCharacterPage,
     SetUpTrackerPage,
 
-    HaveFaithPage
+    HaveFaithPage,
+
+    ContactUsPage
   ],
   providers: [
     StatusBar,
@@ -132,6 +138,7 @@ const firebaseConfig = {
     Media,
     MediaCapture,
     LocalNotifications,
+    EmailComposer
     // FirebaseProvider,
   ]
 })

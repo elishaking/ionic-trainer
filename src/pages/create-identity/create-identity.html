@@ -22,8 +22,7 @@
       <ion-textarea class="wp" rows="4" formControlName="athleticDreams" type="text"></ion-textarea>
     </ion-item>
     <ion-item *ngIf="!createIdentityForm.controls.athleticDreams.valid && (createIdentityForm.controls.athleticDreams.dirty || submitTry)">
-      <p class="error-msg">Please enter your athletic dreams (
-        <strong>2000 characters or fewer. Letters only</strong>)</p>
+      <p class="error-msg">Please enter your athletic dreams (<strong>2000 characters or fewer. Letters only</strong>)</p>
     </ion-item>
 
     <ion-item [ngClass]="{nginvalid: !createIdentityForm.controls.attitudeSlogan.valid}">
@@ -31,8 +30,7 @@
       <ion-textarea rows="4" formControlName="attitudeSlogan" type="text"></ion-textarea>
     </ion-item>
     <ion-item *ngIf="!createIdentityForm.controls.attitudeSlogan.valid && (createIdentityForm.controls.attitudeSlogan.dirty || submitTry)">
-      <p class="error-msg">Please enter your attitude slogan (
-        <strong>2000 characters or fewer. Letters only)</strong>
+      <p class="error-msg">Please enter your attitude slogan (<strong>2000 characters or fewer. Letters only)</strong>
       </p>
     </ion-item>
     <!-- </ion-list> -->

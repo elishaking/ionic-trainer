@@ -4,6 +4,7 @@ import { Activity } from '../../models/interfaces';
 import { Storage } from '@ionic/storage';
 // import { ThenableReference } from '@firebase/database-types';
 import { Reference } from '@firebase/database';
+import { ContactUsPage } from '../contact-us/contact-us';
 
 @Component({
   selector: 'page-home',
@@ -22,6 +23,10 @@ export class HomePage {
     this.storage.get('activities').then((activities) => {
       this.activities = activities ? activities : [];
     });
+  }
+
+  contact(){
+    this.navCtrl.push(ContactUsPage);
   }
 
 }

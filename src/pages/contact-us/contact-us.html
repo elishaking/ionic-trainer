@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div [formGroup]="contactUsForm" class="form-container">
+    <!-- <ion-list> -->
+    <ion-item>
+      <ion-label floating>* Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!contactUsForm.controls.name.valid && (contactUsForm.controls.name.dirty || submitTry)">
+      <p class="error-msg">Please enter your name (<strong>200 characters or fewer. Letters only</strong>)</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>* Email</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!contactUsForm.controls.email.valid && (contactUsForm.controls.email.dirty || submitTry)">
+      <p class="error-msg">Please enter your email (<strong>200 characters or fewer. Letters only</strong>)</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>* Message</ion-label>
+      <ion-textarea rows="4" formControlName="message" type="text"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="!contactUsForm.controls.message.valid && (contactUsForm.controls.message.dirty || submitTry)">
+      <p class="error-msg">Please enter a message (<strong>2000 characters or fewer. Letters only)</strong></p>
+    </ion-item>
+    <!-- </ion-list> -->
+  </div>
+
+  <div id="center-btn">
+    <button ion-button round (click)="submit()" >Submit</button>
+  </div>
+</ion-content>
