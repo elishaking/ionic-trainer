@@ -26,6 +26,10 @@ export class DoInterviewPage {
     this.storage.get('interviews').then((interviews: Interview[]) => {
       if(interviews)
         this.interviews = interviews;
+
+      for(let i = 0; i < this.interviews.length; i++){
+        console.log(this.interviews[i].name);
+      }
     });
   }
 
@@ -65,6 +69,9 @@ export class DoInterviewPage {
       });
     });
   }
+
+  // /storage/emulated/0/interview_5.3gp
+  // file:///storage/emulated/0/interview_5.3gp
 
   recordInterview(){
     this.navCtrl.push(RecordInterviewPage, {

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
-import { Media, MediaObject } from '@ionic-native/media';
 import { RecordTalkPage } from './record-talk/record-talk';
 import { Talk } from '../../models/interfaces';
 import { Storage } from '@ionic/storage';
@@ -17,13 +16,8 @@ export class ProducePepTalksPage {
   talks: Talk[] = [];
   nTalks = 0;
 
-  playing = []; //false;
-  stopped = []; //true;
-  playObj: MediaObject;
-  playingPos = 0;
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private toastCtrl: ToastController, private media: Media, private storage: Storage,
+    private toastCtrl: ToastController, private storage: Storage,
     private mediaCapture: MediaCapture) {
       // this.talks = [{
       //   title: 'PEP Talk 4',
@@ -38,7 +32,6 @@ export class ProducePepTalksPage {
     this.storage.get('talks').then((talks: Talk[]) => {
       if(talks){
         this.talks = talks;
-        this.updateArrays();
       }
     });
   }
@@ -48,19 +41,6 @@ export class ProducePepTalksPage {
     for(let i = 0; i < videos.length; i++){
       videos[i].style.height = videos[i].clientWidth + 'px';
     }
-  }
-
-  updateArrays(){
-    for(let i = 0; i < this.talks.length; i++){
-      this.playing.push(false);
-      this.stopped.push(true);
-      // this.playObj.push(null);
-    }
-  }
-
-  stopPlayBack(){
-    this.playObj.stop();
-    this.playObj.release();
   }
 
   /*
@@ -85,34 +65,9 @@ export class ProducePepTalksPage {
   */
 
   recordPEPTalk(){
-    this.stopPlayBack();
     this.navCtrl.push(RecordTalkPage, {
-      'talks': this.talks,
-      'playing': this.playing,
-      'stopped': this.stopped
+      'talks': this.talks
     });
-  }
-
-  togglePlay(pos: number){
-    if(this.playing[pos]){
-      this.playObj.pause();
-      this.playing[pos] = false;
-    } else{
-      if(this.stopped[pos]){
-        this.playObj = this.media.create('talk_' + pos + '.3gp');
-        this.stopped[pos] = false;
-      }
-
-      this.playObj.play();
-      this.playing[pos] = true;
-    }
-  }
-
-  stopPlay(pos: number){
-    this.playing[pos] = false;
-    this.stopped[pos] = true;
-    this.playObj.stop();
-    this.playObj.release();
   }
 
 }

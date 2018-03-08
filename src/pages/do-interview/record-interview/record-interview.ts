@@ -101,7 +101,7 @@ export class RecordInterviewPage {
     let date = getDayTime();
     let interview: Interview = {
       title: 'Interview ' + (this.nInterviews),
-      name: 'interview_' + (this.nInterviews) + '.3gp',
+      name: 'file:///storage/emulated/0/interview_' + (this.nInterviews) + '.3gp',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],
     }
