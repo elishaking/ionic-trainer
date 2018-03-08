@@ -50,7 +50,7 @@ export class CreateTaskPage {
       ).then(() => {
         this.storage.get('activities').then((activities: Activity[]) => {
           let a = activities ? activities : [];
-          a.push({
+          a.unshift({
             title: 'Created New Task',
             date: date2[0] + " " + date2[1]
           });

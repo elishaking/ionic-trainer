@@ -45,7 +45,7 @@ export class CreateRoutinePage {
       this.storage.set('routines', routines).then(() => {
         this.storage.get('activities').then((activities: Activity[]) => {
           let a = activities ? activities : [];
-          a.push({
+          a.unshift({
             title: 'Created New Routine',
             date: date[0] + " " + date[1]
           });

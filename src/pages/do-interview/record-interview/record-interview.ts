@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { getDayTime } from '../../../models/functions';
-import { Interview } from '../../../models/interfaces';
+import { Interview, Activity } from '../../../models/interfaces';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -107,7 +107,16 @@ export class RecordInterviewPage {
     }
     this.recordingFile.release();
     this.interviews.unshift(interview);
-    this.storage.set('interviews', this.interviews);
+    this.storage.set('interviews', this.interviews).then(() => {
+      this.storage.get('activities').then((activities: Activity[]) => {
+        let a = activities ? activities : [];
+        a.unshift({
+          title: 'Recorded new Interview - audio',
+          date: date[0] + " " + date[1]
+        });
+        this.storage.set('activities', a);
+      });
+    });
     this.storage.set('nInterviews', this.nInterviews);
     this.navCtrl.pop();
   }

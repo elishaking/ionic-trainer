@@ -48,7 +48,7 @@ export class CreateIdentityPage {
         let date = getDayTime();
         this.storage.get('activities').then((activities: Activity[]) => {
           let a = activities ? activities : [];
-          a.push({
+          a.unshift({
             title: 'Updated Identity',
             date: date[0] + " " + date[1]
           });

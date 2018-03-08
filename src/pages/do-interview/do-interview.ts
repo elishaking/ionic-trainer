@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { Interview } from '../../models/interfaces';
+import { Interview, Activity } from '../../models/interfaces';
 import { Storage } from '@ionic/storage';
 import { Media, MediaObject } from '@ionic-native/media';
 import { RecordInterviewPage } from './record-interview/record-interview';
@@ -53,7 +53,16 @@ export class DoInterviewPage {
         isVideo: true
       }
       this.interviews.unshift(interview);
-      this.storage.set('interviews', this.interviews);
+      this.storage.set('interviews', this.interviews).then(() => {
+        this.storage.get('activities').then((activities: Activity[]) => {
+          let a = activities ? activities : [];
+          a.unshift({
+            title: 'Recorded new Interview - video',
+            date: date[0] + " " + date[1]
+          });
+          this.storage.set('activities', a);
+        });
+      });
     });
   }
 

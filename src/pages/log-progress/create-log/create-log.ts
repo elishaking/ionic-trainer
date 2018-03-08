@@ -46,7 +46,7 @@ export class CreateLogPage {
       this.storage.set('logs', logs).then(() => {
         this.storage.get('activities').then((activities: Activity[]) => {
           let a = activities ? activities : [];
-          a.push({
+          a.unshift({
             title: 'Created New Log',
             date: date[0] + " " + date[1]
           });

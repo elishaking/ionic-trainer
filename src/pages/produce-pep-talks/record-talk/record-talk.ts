@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Media, MediaObject } from '@ionic-native/media';
 
-import { Talk } from '../../../models/interfaces';
+import { Talk, Activity } from '../../../models/interfaces';
 import { Storage } from '@ionic/storage';
 import { getDayTime } from '../../../models/functions';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
@@ -113,7 +113,16 @@ export class RecordTalkPage {
     this.navParams.get('stopped').unshift(true);
     this.navParams.get('playObj').unshift(null);
     this.talks.unshift(talk);
-    this.storage.set('talks', this.talks);
+    this.storage.set('talks', this.talks).then(() => {
+      this.storage.get('activities').then((activities: Activity[]) => {
+        let a = activities ? activities : [];
+        a.unshift({
+          title: 'Recorded new PEP Talk',
+          date: date[0] + " " + date[1]
+        });
+        this.storage.set('activities', a);
+      });
+    });
     this.storage.set('nTalks', this.nTalks);
     this.navCtrl.pop();
   }
