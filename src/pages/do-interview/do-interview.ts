@@ -26,8 +26,10 @@ export class DoInterviewPage {
     private toastCtrl: ToastController, private media: Media, private storage: Storage,
     private mediaCapture: MediaCapture, private modalCtrl: ModalController) {
     this.storage.get('interviews').then((interviews: Interview[]) => {
-      if(interviews)
+      if(interviews){
         this.interviews = interviews;
+        this.updateChecked();
+      }
     });
   }
 

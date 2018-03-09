@@ -11,7 +11,9 @@ import { CreateRoutinePage } from './create-routine/create-routine';
 })
 export class DevelopRoutinesPage {
   routines: Routine[] = [];
+
   checked: Boolean[] = [];
+  showDeleteBtn = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private storage: Storage, private modalCtrl: ModalController) {
@@ -21,9 +23,13 @@ export class DevelopRoutinesPage {
     // console.log('ionViewDidLoad DevelopRoutinesPage');
 
     this.storage.get('routines').then((routines) => {
-      console.log(routines)
       this.routines = routines ? routines : [];
+      this.updateChecked();
     });
+  }
+
+  toggleChecked(){
+    this.showDeleteBtn = this.checked.indexOf(true) != -1;
   }
 
   updateChecked(){
@@ -37,6 +43,18 @@ export class DevelopRoutinesPage {
       'routines': this.routines,
       'checked': this.checked
     }).present();
+  }
+
+  delete(){
+    for(let i = 0; i < this.routines.length; i++){
+      if(this.checked[i] == true){
+        this.routines.splice(i, 1);
+        this.checked.splice(i, 1);
+        i--;
+      }
+    }
+    this.storage.set('routines', this.routines);
+    this.showDeleteBtn = false;
   }
 
 }
