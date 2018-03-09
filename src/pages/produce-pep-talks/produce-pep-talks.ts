@@ -17,6 +17,10 @@ export class ProducePepTalksPage {
   talks: Talk[] = [];
   nTalks = 0;
 
+  checked: boolean[] = [];
+
+  showDeleteBtn = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl: ToastController, private storage: Storage,
     private mediaCapture: MediaCapture, private modalCtrl: ModalController) {
@@ -33,6 +37,7 @@ export class ProducePepTalksPage {
     this.storage.get('talks').then((talks: Talk[]) => {
       if(talks){
         this.talks = talks;
+        this.updateChecked()
       }
     });
   }
@@ -41,6 +46,16 @@ export class ProducePepTalksPage {
     let videos = <HTMLCollectionOf<HTMLElement>>document.getElementsByClassName('video-talk');
     for(let i = 0; i < videos.length; i++){
       videos[i].style.height = videos[i].clientWidth + 'px';
+    }
+  }
+
+  toggleChecked(){
+    this.showDeleteBtn = this.checked.indexOf(true) != -1;
+  }
+
+  updateChecked(){
+    for(let i = 0; i < this.talks.length; i++){
+      this.checked.push(false);
     }
   }
 
@@ -62,6 +77,18 @@ export class ProducePepTalksPage {
         });
       }
     });
+  }
+
+  delete(){
+    for(let i = 0; i < this.talks.length; i++){
+      if(this.checked[i] == true){
+        this.talks.splice(i, 1);
+        this.checked.splice(i, 1);
+        i--;
+      }
+    }
+    this.storage.set('talks', this.talks);
+    this.showDeleteBtn = false;
   }
 
 }

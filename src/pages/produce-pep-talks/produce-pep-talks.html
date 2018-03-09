@@ -4,7 +4,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
     <ion-title>Produce PEP Talks</ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="showDeleteBtn" ion-button icon-only (click)="delete()" >
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +24,15 @@
 
     <ion-card *ngFor="let talk of talks; let i = index">
       <ion-card-header>
-        {{ talk.title }}
+        <ion-row>
+          <ion-col col-9>
+            {{ talk.title }}
+          </ion-col>
+
+          <ion-col col-3 style="text-align: end;">
+            <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleChecked()" ></ion-checkbox>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
 
       <hr>
