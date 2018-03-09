@@ -4,7 +4,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
     <ion-title>Do Interview</ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="showDeleteBtn" ion-button icon-only (click)="delete()" >
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +25,15 @@
 
     <ion-card *ngFor="let interview of interviews; let i = index">
       <ion-card-header>
-        {{ interview.title }}
+        <ion-row>
+          <ion-col col-9>
+            {{ interview.title }}
+          </ion-col>
+
+          <ion-col col-3 style="text-align: end;">
+            <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleChecked()" ></ion-checkbox>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
 
       <hr>

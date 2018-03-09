@@ -19,6 +19,9 @@ export class DoInterviewPage {
 
   playObj: MediaObject;
 
+  checked: boolean[] = [];
+  showDeleteBtn = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl: ToastController, private media: Media, private storage: Storage,
     private mediaCapture: MediaCapture, private modalCtrl: ModalController) {
@@ -38,6 +41,16 @@ export class DoInterviewPage {
     let videos = <HTMLCollectionOf<HTMLElement>>document.getElementsByClassName('video-int');
     for(let i = 0; i < videos.length; i++){
       videos[i].style.height = videos[i].clientWidth + 'px';
+    }
+  }
+
+  toggleChecked(){
+    this.showDeleteBtn = this.checked.indexOf(true) != -1;
+  }
+
+  updateChecked(){
+    for(let i = 0; i < this.interviews.length; i++){
+      this.checked.push(false);
     }
   }
 
@@ -85,6 +98,18 @@ export class DoInterviewPage {
       'interviews': this.interviews,
       'nInterviews': this.nInterviews
     });
+  }
+
+  delete(){
+    for(let i = 0; i < this.interviews.length; i++){
+      if(this.checked[i] == true){
+        this.interviews.splice(i, 1);
+        this.checked.splice(i, 1);
+        i--;
+      }
+    }
+    this.storage.set('interviews', this.interviews);
+    this.showDeleteBtn = false;
   }
 
 }

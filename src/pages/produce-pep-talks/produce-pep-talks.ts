@@ -18,7 +18,6 @@ export class ProducePepTalksPage {
   nTalks = 0;
 
   checked: boolean[] = [];
-
   showDeleteBtn = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
