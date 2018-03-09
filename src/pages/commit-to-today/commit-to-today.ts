@@ -96,6 +96,7 @@ export class CommitToTodayPage {
       }
     }
     this.storage.set('allTasks', this.allTasks);
+    this.showDeleteBtn = false;
   }
 
 }

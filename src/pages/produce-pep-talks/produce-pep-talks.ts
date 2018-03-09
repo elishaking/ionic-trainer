@@ -57,7 +57,8 @@ export class ProducePepTalksPage {
     modal.onDidDismiss(() => {
       if(talkDetails.title != ''){
         this.navCtrl.push(RecordTalkPage, {
-          'talks': this.talks
+          'talks': this.talks,
+          'talkDetails': talkDetails
         });
       }
     });

@@ -102,8 +102,9 @@ export class RecordTalkPage {
     this.resetTimer();
     this.recordingFile.stopRecord();
     let date = getDayTime();
+    let talkDetails = this.navParams.get('talkDetails');
     let talk: Talk = {
-      title: 'PEP Talk ' + (this.nTalks),
+      title: talkDetails.title,
       name: 'file:///storage/emulated/0/talk_' + (this.nTalks) + '.3gp',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],

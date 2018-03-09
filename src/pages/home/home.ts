@@ -52,6 +52,7 @@ export class HomePage {
       }
     }
     this.showDeleteBtn = false;
+    this.storage.set('activities', this.activities);
   }
 
 }
