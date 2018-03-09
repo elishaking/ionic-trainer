@@ -11,7 +11,9 @@ import { CreateLogPage } from './create-log/create-log';
 })
 export class LogProgressPage {
   logs: Log[] = [];
+
   checked: Boolean[] = [];
+  showDeleteBtn = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private modalCtrl: ModalController, private storage: Storage) {
@@ -22,9 +24,13 @@ export class LogProgressPage {
     // let date = new Date();
 
     this.storage.get('logs').then((logs) => {
-      console.log(logs)
       this.logs = logs ? logs : [];
+      this.updateChecked();
     });
+  }
+
+  toggleChecked(){
+    this.showDeleteBtn = this.checked.indexOf(true) != -1;
   }
 
   updateChecked(){
@@ -38,6 +44,18 @@ export class LogProgressPage {
       'logs': this.logs,
       'checked': this.checked
     }).present();
+  }
+
+  delete(){
+    for(let i = 0; i < this.logs.length; i++){
+      if(this.checked[i] == true){
+        this.logs.splice(i, 1);
+        this.checked.splice(i, 1);
+        i--;
+      }
+    }
+    this.storage.set('logs', this.logs);
+    this.showDeleteBtn = false;
   }
 
 }

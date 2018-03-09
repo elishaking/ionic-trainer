@@ -6,6 +6,12 @@
     </button>
     
     <ion-title>Log Progress</ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="showDeleteBtn" ion-button icon-only (click)="delete()" >
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,9 +23,17 @@
   <div>
     <button ion-button round *ngIf="!logs" (click)="addLog()">Add Log</button>
 
-    <ion-card *ngFor="let log of logs">
+    <ion-card *ngFor="let log of logs; let i = index">
       <ion-card-header>
-        {{ log.title }}
+        <ion-row>
+          <ion-col col-9>
+            {{ log.title }}
+          </ion-col>
+
+          <ion-col col-3 style="text-align: end;">
+            <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleChecked()" ></ion-checkbox>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
 
       <ion-card-content>
