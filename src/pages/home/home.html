@@ -17,6 +17,32 @@
 </ion-header>
 
 <ion-content padding>
+  <h2 *ngIf="identity" class="title">Identity</h2>
+  <ion-card *ngIf="identity">
+    <ion-card-header>
+      {{ identity.athleticDreams }} 
+    </ion-card-header>
+
+    <hr>
+
+    <ion-card-content>
+      {{ identity.attitudeSlogan }} 
+    </ion-card-content>
+  </ion-card>
+
+  <h2 *ngIf="faith" class="title">Faith</h2>
+  <ion-card *ngIf="faith">
+    <ion-card-header>
+      {{ faith.belief }} 
+    </ion-card-header>
+
+    <hr>
+
+    <ion-card-content>
+      {{ faith.successReason }} 
+    </ion-card-content>
+  </ion-card>
+
   <h2 class="title">Recent Activities</h2>
   <ion-card *ngFor="let activity of activities; let i = index">
     <ion-card-header>
