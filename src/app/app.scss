@@ -38,6 +38,19 @@ ion-select{
     }
 }
 
+.intro{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: overline;
+
+    h1{
+        font-size: 15vw;
+    }
+}
+
 .title{
     color: white;
 }
