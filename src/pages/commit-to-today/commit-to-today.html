@@ -16,9 +16,15 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <h4 class="title">Today's Tasks</h4>
+  <div class="m-class">
+    <div>
+      <h4 class="title">Today's Tasks</h4>
+      <p class="subtitle">{{ todaysDate }}</p>
+    </div>
+
+    <button ion-fab mini (click)="showAllTasks()" color="light"><ion-icon name="folder"></ion-icon></button>
+  </div>
 
   <div>
     <!-- <button ion-button round *ngIf="!todaysTasks.tasks" (click)="addNewTask()">Add New Task</button> -->

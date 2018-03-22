@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Task, TaskGroup } from '../../models/interfaces';
 import { CreateTaskPage } from './create-task/create-task';
 import { getDay } from '../../models/functions';
+import { AllTasksPage } from './all-tasks/all-tasks';
 
 @Component({
   selector: 'page-commit-to-today',
@@ -22,8 +23,13 @@ export class CommitToTodayPage {
 
   showDeleteBtn = false;
 
+  todaysDate = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController, private storage: Storage) {
+    let date = new Date();
+    this.todaysDate ='jdbjbnjsnjs';
+    // this.todaysDate = date.toDateString().replace(' ', ', ');
   }
 
   ionViewDidLoad() {
@@ -97,6 +103,12 @@ export class CommitToTodayPage {
     }
     this.storage.set('allTasks', this.allTasks);
     this.showDeleteBtn = false;
+  }
+
+  showAllTasks(){
+    this.navCtrl.push(AllTasksPage, {
+      'allTasks': this.allTasks
+    });
   }
 
 }
