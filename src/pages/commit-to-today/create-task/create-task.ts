@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Storage } from '@ionic/storage';
 
 import { Task, Activity, TaskGroup } from '../../../models/interfaces';
-import { getDayTime, getDay } from '../../../models/functions';
+import { getDayTimeFormatted } from '../../../models/functions';
 
 @Component({
   selector: 'page-create-task',
@@ -35,7 +35,6 @@ export class CreateTaskPage {
       this.submitTry = false;
 
       let date = new Date();
-      let date2 = getDayTime();
       let task: Task = this.createTaskForm.value;
       let allTasks: TaskGroup[] = this.navParams.get('allTasks');
       let todaysTasks: TaskGroup = this.navParams.get('todaysTasks');
@@ -52,7 +51,7 @@ export class CreateTaskPage {
           let a = activities ? activities : [];
           a.unshift({
             title: 'Created New Task',
-            date: date2[0] + " " + date2[1]
+            date: getDayTimeFormatted()
           });
           this.storage.set('activities', a);
         });

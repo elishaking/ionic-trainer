@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { Task, TaskGroup } from '../../models/interfaces';
 import { CreateTaskPage } from './create-task/create-task';
-import { getDay } from '../../models/functions';
+import { getDayTimeFormatted, equalDates } from '../../models/functions';
 import { AllTasksPage } from './all-tasks/all-tasks';
 
 @Component({
@@ -48,20 +48,20 @@ export class CommitToTodayPage {
       // }
       // change if state - use && operator
       if(this.allTasks.length > 0){
-        if(this.allTasks[0].date == getDay()){
+        if(equalDates(this.allTasks[0].date, getDayTimeFormatted())){
           this.todaysTasks = this.allTasks[0];
         } else{
           this.allTasks.unshift({
-            date: getDay(),
-            updated_date: getDay(),
+            date: getDayTimeFormatted(),
+            updated_date: getDayTimeFormatted(),
             tasks: []
           });
           this.todaysTasks = this.allTasks[0];
         }
       } else{
         this.allTasks.unshift({
-          date: getDay(),
-          updated_date: getDay(),
+          date: getDayTimeFormatted(),
+          updated_date: getDayTimeFormatted(),
           tasks: []
         });
         this.todaysTasks = this.allTasks[0];
