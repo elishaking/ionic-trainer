@@ -10,20 +10,16 @@
 <ion-content padding>
   <ion-card *ngFor="let task of taskGroup.tasks; let i = index" [ngClass]="{ taskdone: task.completed }">
     <ion-grid>
-      <ion-row>
-        <ion-col col-2 style="margin: auto;">
-          <ion-checkbox disabled class="task-status" [(ngModel)]="task.completed" ></ion-checkbox>
+      <ion-row align-items-center>
+        <ion-col col-auto>
+          <ion-checkbox disabled class="task-status" [(ngModel)]="task.completed"></ion-checkbox>
         </ion-col>
 
-        <ion-col col-10>
-          <ion-row>
-            <ion-col class="task-overflow" col-10>
+        <ion-col col-auto>
+          <ion-row align-items-center>
+            <ion-col class="task-overflow" col-12>
               <h2>{{ task.title }} </h2>
             </ion-col>
-
-            <!-- <ion-col col-2>
-              <ion-checkbox disabled [(ngModel)]="checked[i]" (ionChange)="toggleChecked()"></ion-checkbox>
-            </ion-col> -->
           </ion-row>
 
           <ion-row>
@@ -32,6 +28,10 @@
             </ion-col>
           </ion-row>
         </ion-col>
+
+        <!-- <ion-col col-auto style="margin-left: auto;">
+          <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleChecked()"></ion-checkbox>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
   </ion-card>

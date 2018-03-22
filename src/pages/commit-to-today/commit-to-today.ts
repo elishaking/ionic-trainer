@@ -28,8 +28,8 @@ export class CommitToTodayPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController, private storage: Storage) {
     let date = new Date();
-    this.todaysDate ='jdbjbnjsnjs';
-    // this.todaysDate = date.toDateString().replace(' ', ', ');
+    console.log(date.toDateString().replace(' ', ', '));
+    this.todaysDate = date.toDateString().replace(' ', ', ');
   }
 
   ionViewDidLoad() {
