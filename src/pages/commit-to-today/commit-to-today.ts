@@ -4,7 +4,8 @@ import { Storage } from '@ionic/storage';
 
 import { Task, TaskGroup } from '../../models/interfaces';
 import { CreateTaskPage } from './create-task/create-task';
-import { getDay } from '../../models/functions';
+import { getDayTimeFormatted, equalDates } from '../../models/functions';
+import { AllTasksPage } from './all-tasks/all-tasks';
 
 @Component({
   selector: 'page-commit-to-today',
@@ -22,8 +23,13 @@ export class CommitToTodayPage {
 
   showDeleteBtn = false;
 
+  todaysDate = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private modalCtrl: ModalController, private storage: Storage) {
+    let date = new Date();
+    console.log(date.toDateString().replace(' ', ', '));
+    this.todaysDate = date.toDateString().replace(' ', ', ');
   }
 
   ionViewDidLoad() {
@@ -42,20 +48,20 @@ export class CommitToTodayPage {
       // }
       // change if state - use && operator
       if(this.allTasks.length > 0){
-        if(this.allTasks[0].date == getDay()){
+        if(equalDates(this.allTasks[0].date, getDayTimeFormatted())){
           this.todaysTasks = this.allTasks[0];
         } else{
           this.allTasks.unshift({
-            date: getDay(),
-            updated_date: getDay(),
+            date: getDayTimeFormatted(),
+            updated_date: getDayTimeFormatted(),
             tasks: []
           });
           this.todaysTasks = this.allTasks[0];
         }
       } else{
         this.allTasks.unshift({
-          date: getDay(),
-          updated_date: getDay(),
+          date: getDayTimeFormatted(),
+          updated_date: getDayTimeFormatted(),
           tasks: []
         });
         this.todaysTasks = this.allTasks[0];
@@ -97,6 +103,12 @@ export class CommitToTodayPage {
     }
     this.storage.set('allTasks', this.allTasks);
     this.showDeleteBtn = false;
+  }
+
+  showAllTasks(){
+    this.navCtrl.push(AllTasksPage, {
+      'allTasks': this.allTasks
+    });
   }
 
 }

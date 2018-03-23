@@ -38,8 +38,28 @@ ion-select{
     }
 }
 
+.intro{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: overline;
+
+    h1{
+        font-size: 15vw;
+    }
+}
+
 .title{
     color: white;
+}
+
+.subtitle{
+    color: #BDBDBD;
+    margin-bottom: 4vh;
+    font-size: 110%;
+    margin-top: 0;
 }
 
 .menu-inner{
@@ -75,6 +95,38 @@ ion-select{
     margin-right: -8px !important;
 }
 
+//-- Commit to Today
+
+.task-overflow{
+    overflow: auto;
+}
+
+.task-status{
+    .checkbox-icon{
+        width: 32px;
+        height: 32px;
+        border-radius: 100px;
+
+        .checkbox-inner{
+            height: 15px;
+            left: 10px;
+            top: 4px;
+            width: 8px;
+        }
+    }
+}
+
+.taskdone{
+    background: #FAFAFA;
+
+    h2, p{
+        color: gray;
+        text-decoration: line-through;
+    }
+}
+
+//-- Commit to Today
+
 #center-btn{
     margin-top: 5vh;
     text-align: center;
@@ -87,6 +139,18 @@ ion-select{
 
 .clear-btn{
     text-transform: none !important;
+}
+
+.top-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 16px;
+}
+
+.m-class{
+    display: flex;
+    justify-content: space-between;
 }
 
 // .content-md{

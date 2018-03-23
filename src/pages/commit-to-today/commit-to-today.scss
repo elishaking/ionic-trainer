@@ -1,29 +1,3 @@
 page-commit-to-today {
-    .task-overflow{
-        overflow: auto;
-    }
-
-    .task-status{
-        .checkbox-icon{
-            width: 32px;
-            height: 32px;
-            border-radius: 100px;
-
-            .checkbox-inner{
-                height: 15px;
-                left: 10px;
-                top: 4px;
-                width: 8px;
-            }
-        }
-    }
-
-    .taskdone{
-        background: #FAFAFA;
-
-        h2, p{
-            color: gray;
-            text-decoration: line-through;
-        }
-    }
+    
 }

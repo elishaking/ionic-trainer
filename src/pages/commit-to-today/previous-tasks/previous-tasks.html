@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ taskGroup.date }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let task of taskGroup.tasks; let i = index" [ngClass]="{ taskdone: task.completed }">
+    <ion-grid>
+      <ion-row align-items-center>
+        <ion-col col-auto>
+          <ion-checkbox disabled class="task-status" [(ngModel)]="task.completed"></ion-checkbox>
+        </ion-col>
+
+        <ion-col col-auto>
+          <ion-row align-items-center>
+            <ion-col class="task-overflow" col-12>
+              <h2>{{ task.title }} </h2>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="task-overflow" col-12>
+              <p>{{ task.description }} </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <!-- <ion-col col-auto style="margin-left: auto;">
+          <ion-checkbox [(ngModel)]="checked[i]" (ionChange)="toggleChecked()"></ion-checkbox>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

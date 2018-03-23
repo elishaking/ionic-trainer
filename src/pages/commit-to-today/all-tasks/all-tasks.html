@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>All Tasks</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <h3 *ngIf=""></h3> -->
+
+  <ion-card *ngFor="let taskGroup of allTasks; let i = index" (click)="showTaskGroup(i)" class="clickable-card">
+    <ion-card-header>
+      <h1>{{ taskGroup.date }}</h1>
+    </ion-card-header>
+
+    <hr>
+
+    <ion-card-content>
+      <strong>{{ taskGroup.tasks.length }}</strong> task(s)
+    </ion-card-content>
+
+    <hr>
+
+    <p style="margin-left: 10px;"><small>Updated on {{ taskGroup.updated_date }}</small></p>
+  </ion-card>
+</ion-content>

@@ -49,10 +49,10 @@ export class MyApp {
       { title: 'Home', component: HomePage, icon: "home" },
       { title: 'Create Identity', component: CreateIdentityPage, icon: "contact" },
       { title: 'Commit to Today', component: CommitToTodayPage, icon: "list" },
-      { title: 'Produce PEP talks', component: ProducePepTalksPage, icon: "chatbubbles" },
+      { title: 'Produce PEP Talks', component: ProducePepTalksPage, icon: "chatbubbles" },
       { title: 'Log Progress', component: LogProgressPage, icon: "analytics" },
       { title: 'Develop Routines', component: DevelopRoutinesPage, icon: "paper" },
-      { title: 'Do Interview', component: DoInterviewPage, icon: "microphone" },
+      { title: 'Interview Yourself', component: DoInterviewPage, icon: "microphone" },
       { title: 'Track Character', component: TrackCharacterPage, icon: "podium" },
       { title: 'Have Faith', component: HaveFaithPage, icon: "rose" },
     ];

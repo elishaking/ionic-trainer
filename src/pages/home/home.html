@@ -5,7 +5,7 @@
     </button>
 
     <ion-title>
-      Dashboard
+      Born Tough
     </ion-title>
 
     <ion-buttons end>
@@ -17,6 +17,10 @@
 </ion-header>
 
 <ion-content padding>
+  <div *ngIf="!identity && !faith && activities.length == 0" class="intro">
+    <h1>Welcome</h1>
+  </div>
+
   <h2 *ngIf="identity" class="title">Identity</h2>
   <ion-card *ngIf="identity">
     <ion-card-header>
