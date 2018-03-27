@@ -16,6 +16,7 @@ import { HaveFaithPage } from '../pages/have-faith/have-faith';
 import { RecordTalkPage } from '../pages/produce-pep-talks/record-talk/record-talk';
 import { SigninPage } from '../pages/signin/signin';
 import { Storage } from '@ionic/storage';
+import { FindFloPage } from '../pages/find-flo/find-flo';
 
 @Component({
   templateUrl: 'app.html'
@@ -54,6 +55,7 @@ export class MyApp {
       { title: 'Develop Routines', component: DevelopRoutinesPage, icon: "paper" },
       { title: 'Interview Yourself', component: DoInterviewPage, icon: "microphone" },
       { title: 'Track Character', component: TrackCharacterPage, icon: "podium" },
+      { title: 'Find Flo', component: FindFloPage, icon: "trending-up" },
       { title: 'Have Faith', component: HaveFaithPage, icon: "rose" },
     ];
 
