@@ -91,7 +91,7 @@ ion-select{
 .error-msg{
     color: red !important;
     white-space: initial;
-    font-size: 75% !important;
+    font-size: 85% !important;
     margin-right: -8px !important;
 }
 
@@ -167,18 +167,23 @@ ion-slides{
 }
 
 .menu-header {
-    background: color($colors, primary);
     height: 20vh;
     margin-bottom: 2vh;
-    #title {
-      position: absolute;
-      margin: 0;
-      position: sticky;
-      top: 1000px;
-      margin-bottom: 5px;
-      margin-left: 16px;
-      color: color($colors, light);
-      font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    .title {
+        margin: 0;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: color($colors, light);
+    }
+
+    .nav-icon{
+        height: 15vh;;
     }
 }
 
