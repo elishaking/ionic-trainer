@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Find Flo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- change to card -->
+  <ion-list>
+    <button ion-item (click)="setUpTracker()">
+      <h2>Set up Flo Tracker</h2>
+    </button>
+
+    <ion-item>
+      <ion-label>Enter Grade</ion-label>
+      <ion-select [(ngModel)]="grade" (ionChange)="updateGrade()">
+        <ion-option value="a">A</ion-option>
+        <ion-option value="b">B</ion-option>
+        <ion-option value="c">C</ion-option>
+        <ion-option value="d">D</ion-option>
+        <ion-option value="e">E</ion-option>
+        <ion-option value="f">F</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button disabled ion-item (click)="viewResponse()">
+      <h2>View Responses</h2>
+    </button>
+  </ion-list>
+</ion-content>

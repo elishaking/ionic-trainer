@@ -46,6 +46,8 @@ import { PepTalkDetailsPage } from '../pages/produce-pep-talks/pep-talk-details/
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { AllTasksPage } from '../pages/commit-to-today/all-tasks/all-tasks';
 import { PreviousTasksPage } from '../pages/commit-to-today/previous-tasks/previous-tasks';
+import { FindFloPage } from '../pages/find-flo/find-flo';
+import { SetupFloTrackerPage } from '../pages/find-flo/setup-flo-tracker/setup-flo-tracker';
  
 const firebaseConfig = {
   apiKey: "AIzaSyBfn3exrL4oCh_c7jX2nLoxPJri7QHZ9aw",
@@ -87,6 +89,9 @@ const firebaseConfig = {
     SetUpTrackerPage,
 
     HaveFaithPage,
+
+    FindFloPage,
+    SetupFloTrackerPage,
 
     ContactUsPage
   ],
@@ -133,6 +138,9 @@ const firebaseConfig = {
     SetUpTrackerPage,
 
     HaveFaithPage,
+
+    FindFloPage,
+    SetupFloTrackerPage,
 
     ContactUsPage
   ],
