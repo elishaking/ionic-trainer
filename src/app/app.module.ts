@@ -101,9 +101,9 @@ const firebaseConfig = {
     HttpModule,
     // AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp, {
-      mode: 'wp'
+      // mode: 'wp'
     }),
-    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],

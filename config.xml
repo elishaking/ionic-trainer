@@ -1,5 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="skyblazar.apps.bdtough.ios" android-versionCode="9" id="skyblazar.apps.bdtough.ios" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<!-- android-versionCode="9" 
+android-packageName="skyblazar.apps.bdtough.ios"  -->
+<widget 
+    id="skyblazar.apps.bdtough.ios" 
+    version="0.0.9" 
+    ios-CFBundleIdentifier="skyblazar.apps.bdtough.ios"
+    xmlns="http://www.w3.org/ns/widgets" 
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Born Tough Trainer</name>
     <description>Born Tough Trainer</description>
     <author email="ek.chibueze@gmail.com" href="http://skyblazar.com">SkyBlazar</author>
