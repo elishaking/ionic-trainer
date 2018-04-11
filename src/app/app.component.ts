@@ -24,7 +24,7 @@ import { FindFloPage } from '../pages/find-flo/find-flo';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 
