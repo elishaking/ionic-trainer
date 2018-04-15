@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
 import { getDayTime } from '../../../models/functions';
 import { Storage } from '@ionic/storage';
 
@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class SetUpTrackerPage {
   trakingDuration = '';
   timeInterval = 0;
-  every = '';
+  every: ELocalNotificationTriggerUnit;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private localNotifications: LocalNotifications, private platform: Platform,
@@ -28,13 +28,13 @@ export class SetUpTrackerPage {
   setTimeInterval(){
     if(this.trakingDuration == 'daily'){
       this.timeInterval = 3600 * 1e+3;
-      this.every = 'day';
+      this.every = ELocalNotificationTriggerUnit.DAY;
     } else if(this.trakingDuration == 'weekly'){
       this.timeInterval = 25200 * 1e+3;
-      this.every = 'week';
+      this.every = ELocalNotificationTriggerUnit.WEEK;
     } else{
       this.timeInterval = 781200 * 1e+3;
-      this.every = 'month';
+      this.every = ELocalNotificationTriggerUnit.MONTH;
     }
     // this.timeInterval = 3000;
   }
@@ -48,7 +48,9 @@ export class SetUpTrackerPage {
           id: 1,
           title: 'BdTough',
           text: "You'll be reminded to check back " + this.trakingDuration,
-          at: new Date((new Date()).getTime() + 1000),
+          // trigger: {at: new Date((new Date()).getTime() + 1000)},
+          vibrate: true,
+          led: { color: '#FF00FF', on: 500, off: 500 },
           sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
           icon: 'img/logo.png'
         },
@@ -56,10 +58,11 @@ export class SetUpTrackerPage {
           id: 2,
           title: 'BdTough',
           text: 'Check back',
-          at: new Date((new Date()).getTime() + this.timeInterval),
+          trigger: {firstAt: new Date(), every: this.every},
+          vibrate: true,
+          led: { color: '#FF00FF', on: 500, off: 500 },
           sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
-          icon: 'img/logo.png',
-          every: this.every
+          icon: 'img/logo.png'
         }
       ]);
     });
