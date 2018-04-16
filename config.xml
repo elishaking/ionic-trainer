@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="skyblazar.apps.bdtough.ios" ios-CFBundleIdentifier="skyblazar.apps.bdtough.ios" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.skyblazar.apps.bdtough" ios-CFBundleIdentifier="skyblazar.apps.bdtough.ios" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Born Tough Trainer</name>
     <description>Born Tough Trainer</description>
     <author email="ek.chibueze@gmail.com" href="http://skyblazar.com">SkyBlazar</author>
@@ -88,6 +88,7 @@
     <plugin name="cordova-plugin-media-capture" spec="^3.0.1" />
     <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
+    <allow-navigation href="http://192.168.43.78:8100" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="4.5.4" />
 </widget>
