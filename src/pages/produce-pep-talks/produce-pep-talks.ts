@@ -9,6 +9,7 @@ import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-captu
 import { getDayTime } from '../../models/functions';
 import { PepTalkDetailsPage } from './pep-talk-details/pep-talk-details';
 import { MediaObject, Media } from '@ionic-native/media';
+import { PlayAudioPage } from './play-audio/play-audio';
 
 @Component({
   selector: 'page-produce-pep-talks',
@@ -59,33 +60,36 @@ export class ProducePepTalksPage {
   }
 
   togglePlay(pos){
-    console.log(JSON.stringify(this.playing));
-    if (this.mediaObject) {
-      if(this.playing[pos] == true){
-        if(this.paused){
-          this.mediaObject.play();
-          this.paused = false;
-        } else{
-          this.mediaObject.pause();
-          this.paused = true;
-        }
-        return;
-      } else {
-        this.mediaObject.release();
-        this.playing[this.playing.indexOf(true)] = false;
-        this.paused = false;
-      }
-    }      
-
-    this.mediaObject = this.media.create(this.talks[pos].name);
-    this.mediaObject.onSuccess.subscribe(() => {
-      this.playing[this.playing.indexOf(true)] = false;
-      console.log(JSON.stringify(this.playing));
-      // this.mediaObject.release();
+    this.navCtrl.push(PlayAudioPage, {
+      'talkName': 'tmp/' + this.talks[pos].name
     });
+    // console.log(JSON.stringify(this.playing));
+    // if (this.mediaObject) {
+    //   if(this.playing[pos] == true){
+    //     if(this.paused){
+    //       this.mediaObject.play();
+    //       this.paused = false;
+    //     } else{
+    //       this.mediaObject.pause();
+    //       this.paused = true;
+    //     }
+    //     return;
+    //   } else {
+    //     this.mediaObject.release();
+    //     this.playing[this.playing.indexOf(true)] = false;
+    //     this.paused = false;
+    //   }
+    // }      
+
+    // this.mediaObject = this.media.create(this.talks[pos].name);
+    // this.mediaObject.onSuccess.subscribe(() => {
+    //   this.playing[this.playing.indexOf(true)] = false;
+    //   console.log(JSON.stringify(this.playing));
+    //   // this.mediaObject.release();
+    // });
     
-    this.mediaObject.play();
-    this.playing[pos] = true;
+    // this.mediaObject.play();
+    // this.playing[pos] = true;
   }
 
   ionViewDidLeave() {
@@ -121,16 +125,16 @@ export class ProducePepTalksPage {
         if(this.platform.is('ios')){
           
           this.mediaCapture.captureAudio({limit: 1}).then((mediaFile: MediaFile[]) => {
-            console.log(mediaFile[0].fullPath);
+            // console.log(mediaFile[0].fullPath);
             let date = getDayTime();
             let talk: Talk = {
               title: talkDetails.title,
-              name: mediaFile[0].fullPath, //'file:///storage/emulated/0/talk_' + (this.nTalks) + '.wav',
+              name: mediaFile[0].name, //'file:///storage/emulated/0/talk_' + (this.nTalks) + '.wav',
               length: mediaFile[0].size.toString(),
               date: date[0] + " " + date[1],
             }
 
-            console.log(talk.name);
+            // console.log(talk.name);
 
             this.talks.unshift(talk);
             this.storage.set('talks', this.talks).then(() => {

@@ -36,7 +36,7 @@ export class PlayAudioPage {
       // assign storage directory
       this.platform.ready().then(() => {
         if(this.platform.is('ios')) {
-          this.storageDirectory = this.file.dataDirectory;
+          this.storageDirectory = this.file.applicationStorageDirectory;
         } else if(this.platform.is('android')) {
           this.storageDirectory = this.file.externalDataDirectory;
         }
@@ -47,6 +47,11 @@ export class PlayAudioPage {
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad PlayAudioPage');
+  }
+
+  ionViewWillEnter(){
+    // comment out the following line when adjusting UI in browsers
+    this.prepareAudioFile();
   }
 
   prepareAudioFile() {
@@ -63,7 +68,7 @@ export class PlayAudioPage {
           }
         }).catch(err => {
           console.log("Error occurred while checking local files:");
-          console.error(err);
+          console.error(JSON.stringify(err));
         });
       });
     });
@@ -79,6 +84,10 @@ export class PlayAudioPage {
 
   getDurationAndSetToPlay() {
     this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.talkName);
+    this.curr_playing_file.onError.subscribe((error)=> {
+      console.error(JSON.stringify(error));
+    });
+    console.log(JSON.stringify(this.curr_playing_file));
     this.curr_playing_file.play();
     this.curr_playing_file.setVolume(0.0);  // you don't want users to notice that you are playing the file
     let self = this;
