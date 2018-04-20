@@ -3,7 +3,7 @@
     <name>Born Tough Trainer</name>
     <description>Born Tough Trainer</description>
     <author email="ek.chibueze@gmail.com" href="http://skyblazar.com">SkyBlazar</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.43.78:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -84,11 +84,13 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-media" spec="^5.0.2" />
     <plugin name="cordova-plugin-media-capture" spec="^3.0.1" />
     <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <allow-navigation href="http://192.168.43.78:8100" />
+    <plugin name="com.hutchind.cordova.plugins.streamingmedia" spec="~0.1.4" />
+    <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
+    <plugin name="cordova-plugin-media" spec="^5.0.2" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="4.5.4" />
 </widget>

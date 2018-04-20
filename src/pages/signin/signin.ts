@@ -64,7 +64,7 @@ export class SigninPage {
       }
       catch (e) {
         loading.dismiss();
-        console.error(e);
+        console.error(JSON.stringify(e));
       }
       // setTimeout(()=>{
       //   loading.dismiss();

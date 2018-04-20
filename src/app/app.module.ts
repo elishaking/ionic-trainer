@@ -152,7 +152,7 @@ const firebaseConfig = {
     Media,
     MediaCapture,
     LocalNotifications,
-    EmailComposer
+    EmailComposer,
     // FirebaseProvider,
   ]
 })

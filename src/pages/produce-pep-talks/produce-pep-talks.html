@@ -40,9 +40,10 @@
       <ion-card-content>
         <div *ngIf="!talk.isVideo" class="foot">
           <audio controls>
-            <source src="{{ talk.name }}">
+            <source src="{{ talk.name }}" type="audio/wav">
             Cannot Play Audio
           </audio>
+          <!-- <video controls src="" type="audio/wave"></video> -->
         </div>
 
         <div *ngIf="talk.isVideo" class="foot">
