@@ -39,10 +39,12 @@
 
       <ion-card-content>
         <div *ngIf="!talk.isVideo" class="foot">
-          <audio controls>
-            <source src="{{ talk.name }}" type="audio/wav">
-            Cannot Play Audio
-          </audio>
+          <div>
+            <button ion-button clear (click)="togglePlay(i)" >
+              <ion-icon *ngIf="playing[i]" name="pause"></ion-icon>
+              <ion-icon *ngIf="!playing[i]" name="play"></ion-icon>
+            </button>
+          </div>
           <!-- <video controls src="" type="audio/wave"></video> -->
         </div>
 

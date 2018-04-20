@@ -21,7 +21,8 @@ export class ProducePepTalksPage {
   checked: boolean[] = [];
   showDeleteBtn = false;
 
-  sounds = [];
+  playing: boolean[] = [];
+  paused = false;
 
   mediaObject: MediaObject;
 
@@ -43,7 +44,7 @@ export class ProducePepTalksPage {
     this.storage.get('talks').then((talks: Talk[]) => {
       if(talks){
         this.talks = talks;
-        this.updateChecked();
+        this.setTrackers();
       }
     });
   }
@@ -55,21 +56,36 @@ export class ProducePepTalksPage {
     }
 
     // let url = '/Users/king/Library/Developer/CoreSimulator/Devices/CB01E1E4-7276-40A8-B53F-AC4C94B42660/data/Containers/Data/Application/B0926D78-A5EE-4B36-BB12-902453F5BE63/tmp/audio_001.wav';
+  }
+
+  togglePlay(pos){
+    console.log(JSON.stringify(this.playing));
     if (this.mediaObject) {
-      this.mediaObject.release();
+      if(this.playing[pos] == true){
+        if(this.paused){
+          this.mediaObject.play();
+          this.paused = false;
+        } else{
+          this.mediaObject.pause();
+          this.paused = true;
+        }
+        return;
+      } else {
+        this.mediaObject.release();
+        this.playing[this.playing.indexOf(true)] = false;
+        this.paused = false;
+      }
     }      
-    this.mediaObject = this.media.create(this.talks[0].name);
-    // this.mediaObject.onError.subscribe((error) => {
-    //   console.error(JSON.stringify(error));
-    // });
-    // this.mediaObject.onSuccess.subscribe((suc) => {
-    //   console.info(suc);
-    // })
+
+    this.mediaObject = this.media.create(this.talks[pos].name);
+    this.mediaObject.onSuccess.subscribe(() => {
+      this.playing[this.playing.indexOf(true)] = false;
+      console.log(JSON.stringify(this.playing));
+      // this.mediaObject.release();
+    });
     
-    
-    setTimeout(()=>{
-      this.mediaObject.play();
-    }, 3000);
+    this.mediaObject.play();
+    this.playing[pos] = true;
   }
 
   ionViewDidLeave() {
@@ -82,9 +98,10 @@ export class ProducePepTalksPage {
     this.showDeleteBtn = this.checked.indexOf(true) != -1;
   }
 
-  updateChecked(){
+  setTrackers(){
     for(let i = 0; i < this.talks.length; i++){
       this.checked.push(false);
+      this.playing.push(false);
     }
   }
 
