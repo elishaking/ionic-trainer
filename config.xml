@@ -3,7 +3,7 @@
     <name>Born Tough Trainer</name>
     <description>Born Tough Trainer</description>
     <author email="ek.chibueze@gmail.com" href="http://skyblazar.com">SkyBlazar</author>
-    <content original-src="index.html" src="http://192.168.43.78:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
