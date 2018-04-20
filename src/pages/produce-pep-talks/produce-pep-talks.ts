@@ -61,7 +61,8 @@ export class ProducePepTalksPage {
 
   togglePlay(pos){
     this.navCtrl.push(PlayAudioPage, {
-      'talkName': 'tmp/' + this.talks[pos].name
+      'talkName': this.talks[pos].title,
+      'talkPath': 'tmp/' + this.talks[pos].name
     });
     // console.log(JSON.stringify(this.playing));
     // if (this.mediaObject) {

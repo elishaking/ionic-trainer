@@ -25,6 +25,7 @@ export class PlayAudioPage {
   get_position_interval: any;
 
   talkName = "";
+  talkPath = "";
 
   constructor(
     public platform: Platform,
@@ -42,6 +43,7 @@ export class PlayAudioPage {
         }
 
         this.talkName = this.navParams.get('talkName');
+        this.talkPath = this.navParams.get('talkPath');
       });
   }
 
@@ -57,9 +59,8 @@ export class PlayAudioPage {
   prepareAudioFile() {
     this.platform.ready().then(() => {
       this.file.resolveDirectoryUrl(this.storageDirectory).then((resolvedDirectory) => {
-        // inspired by: https://github.com/ionic-team/ionic-native/issues/1711
         console.log("resolved  directory: " + resolvedDirectory.nativeURL);
-        this.file.checkFile(resolvedDirectory.nativeURL, this.talkName).then((data) => {
+        this.file.checkFile(resolvedDirectory.nativeURL, this.talkPath).then((data) => {
           if(data == true) {  // exist
             this.getDurationAndSetToPlay();
           } else {  // not sure if File plugin will return false. go to download
@@ -83,7 +84,7 @@ export class PlayAudioPage {
   }
 
   getDurationAndSetToPlay() {
-    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.talkName);
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.talkPath);
     this.curr_playing_file.onError.subscribe((error)=> {
       console.error(JSON.stringify(error));
     });
@@ -127,7 +128,7 @@ export class PlayAudioPage {
   }
 
   setRecordingToPlay() {
-    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.talkName);
+    this.curr_playing_file = this.createAudioFile(this.storageDirectory, this.talkPath);
     this.curr_playing_file.onStatusUpdate.subscribe(status => {
       // 2: playing
       // 3: pause
