@@ -8,7 +8,6 @@ import { Storage } from '@ionic/storage';
 import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture';
 import { getDayTime } from '../../models/functions';
 import { PepTalkDetailsPage } from './pep-talk-details/pep-talk-details';
-import { StreamingMedia } from '@ionic-native/streaming-media';
 import { MediaObject, Media } from '@ionic-native/media';
 
 @Component({
@@ -24,11 +23,13 @@ export class ProducePepTalksPage {
 
   sounds = [];
 
+  mediaObject: MediaObject;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl: ToastController, private storage: Storage,
     private mediaCapture: MediaCapture, private modalCtrl: ModalController,
     private platform: Platform,
-    private media: Media, private mediaObject: MediaObject) {
+    private media: Media) {
       // this.talks = [{
       //   title: 'PEP Talk 4',
       //   name: 'talk_4.3gp',
@@ -53,21 +54,20 @@ export class ProducePepTalksPage {
       videos[i].style.height = videos[i].clientWidth + 'px';
     }
 
-    console.log(this.talks[0].name);
-    let url = '/Users/king/Library/Developer/CoreSimulator/Devices/CB01E1E4-7276-40A8-B53F-AC4C94B42660/data/Containers/Data/Application/805C76FE-CD5B-468E-9621-2345460F84CA/tmp/audio_004.wav';
-    // this.nativeAudio.preloadComplex('audio1', url, 1, 80, 0).then((val) => {
-    //   console.log(val);
-    // }, (error) => {
-    //   console.error(error);
-    // });
+    // let url = '/Users/king/Library/Developer/CoreSimulator/Devices/CB01E1E4-7276-40A8-B53F-AC4C94B42660/data/Containers/Data/Application/B0926D78-A5EE-4B36-BB12-902453F5BE63/tmp/audio_001.wav';
     if (this.mediaObject) {
       this.mediaObject.release();
     }      
-    this.mediaObject = this.media.create(url);
+    this.mediaObject = this.media.create(this.talks[0].name);
+    // this.mediaObject.onError.subscribe((error) => {
+    //   console.error(JSON.stringify(error));
+    // });
+    // this.mediaObject.onSuccess.subscribe((suc) => {
+    //   console.info(suc);
+    // })
     
     
     setTimeout(()=>{
-      // this.nativeAudio.play('audio1', () => console.log('audio1 is done playing'));
       this.mediaObject.play();
     }, 3000);
   }

@@ -5,3 +5,5 @@ check error messages across all forms
 -- adjust signUp - userDetails
 
 -- fix signin errors
+
+-- remove unused plugins

@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { Media } from '@ionic-native/media';
+import { Media, MediaObject } from '@ionic-native/media';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { EmailComposer } from '@ionic-native/email-composer';
