@@ -24,7 +24,7 @@ import { FindFloPage } from '../pages/find-flo/find-flo';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any;
+  rootPage:any = HomePage;
   pages: Array<{ title: string, component: any, icon: string }>;
   currentPage = [];
 
@@ -33,9 +33,11 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.storage.get('loggedIn').then((loggedIn) => {
-        this.rootPage = loggedIn ? HomePage : SigninPage;
-      });
+
+      // this.storage.get('loggedIn').then((loggedIn) => {
+      //   this.rootPage = loggedIn ? HomePage : SigninPage;
+      // });
+
       statusBar.styleDefault();
       setTimeout(() => {
         if (platform.is('android')) {
