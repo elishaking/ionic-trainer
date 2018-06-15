@@ -46,7 +46,8 @@ export class SetupFloTrackerPage {
           id: 1,
           title: 'BdTough',
           text: "You'll be reminded to check back " + this.trakingDuration,
-          at: new Date((new Date()).getTime() + 1000),
+          trigger: {at: new Date()},
+          // at: new Date((new Date()).getTime() + 1000),
           sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
           icon: 'img/logo.png'
         },
@@ -54,10 +55,9 @@ export class SetupFloTrackerPage {
           id: 2,
           title: 'BdTough - Flo',
           text: 'Check back - Flo',
-          at: new Date((new Date()).getTime() + this.timeInterval),
+          trigger: {at: new Date((new Date()).getTime() + this.timeInterval)},
           sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
           icon: 'img/logo.png',
-          every: this.every
         }
       ]);
     });
