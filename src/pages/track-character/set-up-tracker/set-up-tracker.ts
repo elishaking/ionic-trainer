@@ -48,7 +48,7 @@ export class SetUpTrackerPage {
           id: 1,
           title: 'BdTough',
           text: "You'll be reminded to check back " + this.trakingDuration,
-          at: new Date((new Date()).getTime() + 1000),
+          trigger: {at: new Date((new Date()).getTime() + 1000)},
           sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
           icon: 'img/logo.png'
         },
@@ -56,10 +56,9 @@ export class SetUpTrackerPage {
           id: 2,
           title: 'BdTough',
           text: 'Check back',
-          at: new Date((new Date()).getTime() + this.timeInterval),
+          trigger: {at: new Date((new Date()).getTime() + this.timeInterval)},
           sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
-          icon: 'img/logo.png',
-          every: this.every
+          icon: 'img/logo.png'
         }
       ]);
     });
