@@ -90,7 +90,9 @@ export class DoInterviewPage {
               this.storage.set('activities', a);
             });
           });
-        });
+        }, (error) => {
+          console.error(JSON.stringify(error));
+        })
       }
     });
   }

@@ -62,9 +62,10 @@ export class RecordTalkPage {
         this.recordingFile.resumeRecord();
         this.recordPaused = false;
       } else{
-        this.recordingFile = this.media.create('talk_' + (++this.nTalks) + '.3gp');
+        this.recordingFile = this.media.create('talk_' + (++this.nTalks) + '.wav');
+        
         this.recordingFile.onError.subscribe((e) => {
-          this.presentMsg('Error occured while saving recording');
+          this.presentMsg('Error occured while creating recording');
         });
         this.recordingFile.onSuccess.subscribe(() => {
           this.presentMsg('recording saved');
@@ -105,7 +106,7 @@ export class RecordTalkPage {
     let talkDetails = this.navParams.get('talkDetails');
     let talk: Talk = {
       title: talkDetails.title,
-      name: 'file:///storage/emulated/0/talk_' + (this.nTalks) + '.3gp',
+      name: 'file:///storage/emulated/0/talk_' + (this.nTalks) + '.wav',
       length: this.recordingFile.getDuration() + '',
       date: date[0] + " " + date[1],
     }

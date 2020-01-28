@@ -1,70 +1,82 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-import { Storage } from '@ionic/storage';
+import { Component } from "@angular/core";
+import { NavController, NavParams, Platform } from "ionic-angular";
+import {
+  LocalNotifications,
+  ELocalNotificationTriggerUnit
+} from "@ionic-native/local-notifications";
+import { Storage } from "@ionic/storage";
 
 @Component({
-  selector: 'page-setup-flo-tracker',
-  templateUrl: 'setup-flo-tracker.html',
+  selector: "page-setup-flo-tracker",
+  templateUrl: "setup-flo-tracker.html"
 })
 export class SetupFloTrackerPage {
-  trakingDuration = '';
+  trakingDuration = "";
   timeInterval = 0;
-  every = '';
+  every: ELocalNotificationTriggerUnit;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private localNotifications: LocalNotifications, private platform: Platform,
-    private storage: Storage) {
-    this.storage.get('trakingDurationFlo').then((trakingDuration) => {
-      this.trakingDuration = trakingDuration ? trakingDuration : '';
-    })
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private localNotifications: LocalNotifications,
+    private platform: Platform,
+    private storage: Storage
+  ) {
+    this.storage.get("trakingDurationFlo").then(trakingDuration => {
+      this.trakingDuration = trakingDuration ? trakingDuration : "";
+    });
   }
 
-  ionViewDidLoad() {
-  }
+  ionViewDidLoad() {}
 
-  setTimeInterval(){
-    if(this.trakingDuration == 'daily'){
-      this.timeInterval = 3600 * 1e+3;
-      this.every = 'day';
-    } else if(this.trakingDuration == 'weekly'){
-      this.timeInterval = 25200 * 1e+3;
-      this.every = 'week';
-    } else{
-      this.timeInterval = 781200 * 1e+3;
-      this.every = 'month';
+  setTimeInterval() {
+    if (this.trakingDuration == "daily") {
+      this.timeInterval = 3600 * 1e3;
+      this.every = ELocalNotificationTriggerUnit.DAY;
+    } else if (this.trakingDuration == "weekly") {
+      this.timeInterval = 25200 * 1e3;
+      this.every = ELocalNotificationTriggerUnit.WEEK;
+    } else {
+      this.timeInterval = 781200 * 1e3;
+      this.every = ELocalNotificationTriggerUnit.MONTH;
     }
     // this.timeInterval = 3000;
   }
 
-  scheduleNotification(){
-    this.storage.set('trakingDurationFlo', this.trakingDuration);
+  scheduleNotification() {
+    this.storage.set("trakingDurationFlo", this.trakingDuration);
     this.setTimeInterval();
     this.localNotifications.clearAll().then(() => {
       this.localNotifications.schedule([
         {
           id: 1,
-          title: 'BdTough',
+          title: "BdTough",
           text: "You'll be reminded to check back " + this.trakingDuration,
-          trigger: {at: new Date()},
-          // at: new Date((new Date()).getTime() + 1000),
-          sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
-          icon: 'img/logo.png'
+          // trigger: {at: new Date((new Date()).getTime() + 1000)},
+          vibrate: true,
+          led: { color: "#FF00FF", on: 500, off: 500 },
+          sound: this.platform.is("android")
+            ? "file://sound.mp3"
+            : "file://beep.caf",
+          icon: "img/logo.png"
         },
         {
           id: 2,
-          title: 'BdTough - Flo',
-          text: 'Check back - Flo',
-          trigger: {at: new Date((new Date()).getTime() + this.timeInterval)},
-          sound: this.platform.is('android') ? 'file://sound.mp3': 'file://beep.caf',
-          icon: 'img/logo.png',
+          title: "BdTough",
+          text: "Check back",
+          trigger: { firstAt: new Date(), every: this.every },
+          vibrate: true,
+          led: { color: "#FF00FF", on: 500, off: 500 },
+          sound: this.platform.is("android")
+            ? "file://sound.mp3"
+            : "file://beep.caf",
+          icon: "img/logo.png"
         }
       ]);
     });
   }
 
-  close(){
+  close() {
     this.navCtrl.pop();
   }
-
 }

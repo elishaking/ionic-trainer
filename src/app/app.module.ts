@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { Media } from '@ionic-native/media';
+import { Media, MediaObject } from '@ionic-native/media';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { EmailComposer } from '@ionic-native/email-composer';
@@ -48,6 +48,8 @@ import { AllTasksPage } from '../pages/commit-to-today/all-tasks/all-tasks';
 import { PreviousTasksPage } from '../pages/commit-to-today/previous-tasks/previous-tasks';
 import { FindFloPage } from '../pages/find-flo/find-flo';
 import { SetupFloTrackerPage } from '../pages/find-flo/setup-flo-tracker/setup-flo-tracker';
+import { File } from '@ionic-native/file';
+import { PlayAudioPage } from '../pages/produce-pep-talks/play-audio/play-audio';
  
 const firebaseConfig = {
   apiKey: "AIzaSyBfn3exrL4oCh_c7jX2nLoxPJri7QHZ9aw",
@@ -74,6 +76,7 @@ const firebaseConfig = {
     ProducePepTalksPage,
     RecordTalkPage,
     PepTalkDetailsPage,
+    PlayAudioPage,
 
     LogProgressPage,
     CreateLogPage,
@@ -123,6 +126,7 @@ const firebaseConfig = {
     ProducePepTalksPage,
     RecordTalkPage,
     PepTalkDetailsPage,
+    PlayAudioPage,
 
     LogProgressPage,
     CreateLogPage,
@@ -151,8 +155,9 @@ const firebaseConfig = {
     
     Media,
     MediaCapture,
+    File,
     LocalNotifications,
-    EmailComposer
+    EmailComposer,
     // FirebaseProvider,
   ]
 })
